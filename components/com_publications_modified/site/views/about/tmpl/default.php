@@ -211,7 +211,7 @@ $schema = $metaElements->getSchema();
 		{
 			$cite->version = $this->publication->version_label;
 		}
-
+		$citations=$this->publication->metadata;
 		if ($this->publication->params->get('show_citation') == 2)
 		{
 			$citations = '';

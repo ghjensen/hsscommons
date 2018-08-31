@@ -38,7 +38,6 @@ $text = ($this->task == 'edit' ? Lang::txt('JACTION_EDIT') : Lang::txt('JACTION_
 Toolbar::title(Lang::txt('COM_PUBLICATIONS_LICENSE') . ': ' . $text, 'publications');
 if ($canDo->get('core.edit'))
 {
-	Toolbar::apply();
 	Toolbar::save();
 }
 Toolbar::cancel();
@@ -89,7 +88,6 @@ function submitbutton(pressbutton)
 					<span class="hint"><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ICON_HINT'); ?></span>
 				</div>
 
-				<input type="hidden" name="fields[ordering]" value="<?php echo $this->row->ordering; ?>" />
 				<input type="hidden" name="fields[id]" value="<?php echo $this->row->id; ?>" />
 				<input type="hidden" name="option" value="<?php echo $this->option; ?>" />
 				<input type="hidden" name="controller" value="<?php echo $this->controller; ?>" />
@@ -103,11 +101,11 @@ function submitbutton(pressbutton)
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ID'); ?></th>
 						<td><?php echo $this->row->id; ?></td>
 					</tr>
+				<?php if ($this->row->id) { ?>
 					<tr>
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_DEFAULT'); ?></th>
 						<td><?php echo $this->row->main == 1 ? Lang::txt('COM_PUBLICATIONS_LICENSE_YES') : Lang::txt('COM_PUBLICATIONS_LICENSE_NO') ; ?></td>
 					</tr>
-				<?php if ($this->row->id) { ?>
 					<tr>
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ORDERING'); ?></th>
 						<td><?php echo $this->row->ordering; ?></td>

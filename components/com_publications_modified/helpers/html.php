@@ -349,10 +349,15 @@ class Html
 		$formatter->setTemplate($template);
 
 		$html  = '<p>' . Lang::txt('COM_PUBLICATIONS_CITATION_INSTRUCTIONS') . '</p>' . "\n";
-		$html .= $citations;
+                $html .= '<ul class="citations results">' . "\n";
+                if ($citations)
+                {
+                        $html .= "\t" . '<li>' . "\n";
+                        $html .= $citations;
+                        $html .= "\t" . '</li>' . "\n";
+                }
 		if ($cite)
 		{
-			$html .= '<ul class="citations results">' . "\n";
 			$html .= "\t" . '<li>' . "\n";
 
 			$formatted = $formatter->formatCitation($cite, false, true, $cconfig);
@@ -383,9 +388,9 @@ class Html
 				$html .= "\t\t" . '</p>'."\n";
 			}
 			$html .= "\t" . '</li>' . "\n";
-			$html .= '</ul>' . "\n";
 		}
 
+		$html .= '</ul>' . "\n";
 		return $html;
 	}
 

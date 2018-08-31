@@ -654,4 +654,30 @@ class Version extends Table
 			return $this->_db->loadResult();
 		}
 	}
+
+        /**
+         * Get records
+         *
+         * @param      integer  $uid            User ID
+         * @param      array   $filters         Query filters
+         * @return     object
+         */
+        public function getPubVersions($uid, $filters = array())
+        {
+                if ($uid === NULL)
+                {
+                        return false;
+                }
+
+                $sortby  = isset($filters['sortby']) && $filters['sortby'] != '' ? $filters['sortby'] : 'v.title ASC';
+                $query = " SELECT v.* ";
+                $query.= " FROM $this->_tbl AS v ";
+                $query.= " WHERE v.created_by = " . $this->_db->quote($uid);
+                $query.= " AND v.state != 2 ";
+                $query.= " ORDER BY " . $sortby;
+
+                $this->_db->setQuery($query);
+                return $this->_db->loadObjectList();
+        }
+
 }

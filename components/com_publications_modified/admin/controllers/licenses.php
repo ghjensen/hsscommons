@@ -368,7 +368,7 @@ class Licenses extends AdminController
 
 		if ($success)
 		{
-			Notify::success(Lang::txt('COM_PUBLICATIONS_ITEMS_REMOVED', $i));
+			Notify::success(Lang::txt('COM_PUBLICATIONS_ITEMS_REMOVED'));
 		}
 
 		// Redirect

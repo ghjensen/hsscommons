@@ -164,7 +164,7 @@ if (!$this->line->hasImage())
 		{
 			$content = $this->line->get('abstract');
 		}
-		else if ($this->line->get('description'))
+		if ($this->line->get('description'))
 		{
 			$content = $this->line->get('description');
 		}

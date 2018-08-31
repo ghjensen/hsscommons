@@ -294,7 +294,8 @@ class Categories extends AdminController
 			$row->set('state', $row->get('state') == 1 ? 0 : 1);
 
 			// Save
-			if (!$row->store())
+			// if (!$row->store())
+			if (!$row->save())
 			{
 				Notify::error($row->getError());
 				continue;
@@ -372,7 +373,8 @@ class Categories extends AdminController
 			// Remove the profile
 			$row = Category::oneOrFail($id);
 
-			if (!$row->delete())
+			//if (!$row->delete())
+			if (!$row->destroy())
 			{
 				Notify::error($row->getError());
 				continue;
