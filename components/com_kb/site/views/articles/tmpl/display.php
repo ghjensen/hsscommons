@@ -196,14 +196,6 @@ Document::setTitle(Lang::txt('COM_KB'));
 					</p>
 				</div><!-- / .container -->
 			<?php } ?>
-			<?php if (Component::isEnabled('com_wishlist')) { ?>
-				<div class="container">
-					<h3><?php echo Lang::txt('COM_KB_FEATURE_REQUEST'); ?></h3>
-					<p>
-						<?php echo Lang::txt('COM_KB_HAVE_A_FEATURE_REQUEST'); ?> <a href="<?php echo Route::url('index.php?option=com_wishlist'); ?>"><?php echo Lang::txt('COM_KB_FEATURE_TELL_US'); ?></a>
-					</p>
-				</div><!-- / .container -->
-			<?php } ?>
 			<?php if (Component::isEnabled('com_support')) { ?>
 				<div class="container">
 					<h3><?php echo Lang::txt('COM_KB_TROUBLE_REPORT'); ?></h3>
