@@ -292,14 +292,6 @@ $sortdir = $this->filters['sort_Dir'] == 'DESC' ? 'ASC' : 'DESC';
 					<?php echo Lang::txt('COM_ANSWERS_GET_STARTED_HELP', Route::url('index.php?option=com_help&component=answers&page=index')); ?>
 				</p>
 			</div><!-- / .container -->
-			<?php if ($this->config->get('banking')) { ?>
-				<div class="container">
-					<h3><?php echo Lang::txt('COM_ANSWERS_EARN_POINTS'); ?></h3>
-					<p>
-						<?php echo Lang::txt('COM_ANSWERS_START_EARNING_POINTS'); ?> <a href="<?php echo $this->config->get('infolink'); ?>"><?php echo Lang::txt('COM_ANSWERS_LEARN_MORE'); ?></a>.
-					</p>
-				</div><!-- / .container -->
-			<?php } ?>
 		</aside><!-- / .aside -->
 	</div><!-- / .section-inner -->
 </section><!-- / .main section -->
