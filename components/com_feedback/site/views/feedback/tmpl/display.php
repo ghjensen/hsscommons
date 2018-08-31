@@ -78,17 +78,8 @@ $this->css('introduction.css', 'system')
 					</div>
 				</div><!-- / .col span6 omega -->
 			</div><!-- / .grid -->
-			<?php if ($this->wishlist || $this->xpoll) { ?>
+			<?php if ($this->wishlist || $this->poll) { ?>
 				<div class="grid">
-					<div class="col span6">
-					<?php if ($this->wishlist) { ?>
-						<div class="wish">
-							<h3><a href="<?php echo Route::url('index.php?option=com_wishlist'); ?>"><?php echo Lang::txt('COM_FEEDBACK_WISHLIST_HEADER'); ?></a></h3>
-							<p><?php echo Lang::txt('COM_FEEDBACK_WISHLIST_DESCRIPTION'); ?></p>
-							<p><a class="more btn" href="<?php echo Route::url('index.php?option=com_wishlist'); ?>"><?php echo Lang::txt('COM_FEEDBACK_WISHLIST_BUTTON'); ?></a></p>
-						</div>
-					<?php } ?>
-					</div><!-- / .col span6 -->
 					<div class="col span6 omega">
 					<?php if ($this->poll) { ?>
 						<div class="poll">
