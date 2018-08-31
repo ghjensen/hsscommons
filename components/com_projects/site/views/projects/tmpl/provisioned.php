@@ -40,12 +40,13 @@ $this->css()
 	->js('setup');
 
 ?>
+
+<header id="content-header">
+        <h2><?php echo $this->title; ?></h2>
+</header>
+
 <div id="project-wrap">
 	<section class="main section">
-		<header id="content-header">
-			<h2><?php echo $this->title; ?></h2>
-		</header>
-
 		<h3 class="prov-header"><a href="<?php echo $route; ?>"><?php echo ucfirst(Lang::txt('COM_PROJECTS_PUBLICATIONS_MY_SUBMISSIONS')); ?></a> &raquo; <a href="<?php echo $url; ?>"> "<?php echo \Hubzero\Utility\Str::truncate($this->pub->title, 65); ?>"</a> &raquo; <?php echo Lang::txt('COM_PROJECTS_PROVISIONED_PROJECT'); ?></h3>
 
 		<?php

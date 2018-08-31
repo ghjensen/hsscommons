@@ -807,6 +807,11 @@ class Projects extends Base
 			$this->view->setLayout('provisioned');
 			$this->view->model = $this->model;
 
+        		if (!isset($this->model->_tblOwner))
+                        {
+	                        $this->model->member();
+                        }
+
 			$this->view->team  = $this->model->_tblOwner->getOwnerNames($this->model->get('alias'));
 
 			// Output HTML
