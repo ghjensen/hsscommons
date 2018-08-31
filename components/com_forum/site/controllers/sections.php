@@ -224,8 +224,8 @@ class Sections extends SiteController
 		// Load the section
 		$section = Section::all()
 			->whereEquals('alias', Request::getString('section'))
-			->whereEquals('scope', $this->forum->get('scope'))
-			->whereEquals('scope_id', $this->forum->get('scope_id'))
+			->whereEquals('scope', $this->model->get('scope'))
+			->whereEquals('scope_id', $this->model->get('scope_id'))
 			->where('state', '!=', Section::STATE_DELETED)
 			->row();
 
