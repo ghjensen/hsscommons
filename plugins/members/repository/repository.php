@@ -85,13 +85,14 @@ class plgMembersRepository extends \Hubzero\Plugin\Plugin
 		parent::__construct($subject, $config);
 
 		$this->_database = App::get('db');
-
-		require_once(PATH_CORE . DS . 'components' . DS . 'com_publications' . DS . 'tables' . DS . 'logs.php');
-		require_once(PATH_CORE . DS . 'components' . DS . 'com_publications' . DS . 'tables' . DS . 'publication.php');
-		require_once(PATH_CORE . DS . 'components' . DS . 'com_publications' . DS . 'tables' . DS . 'author.php');
-		require_once(PATH_CORE . DS . 'components' . DS . 'com_publications' . DS . 'tables' . DS . 'category.php');
-		require_once(PATH_CORE . DS . 'components' . DS . 'com_publications' . DS . 'tables' . DS . 'version.php');
-		require_once(PATH_CORE . DS . 'components' . DS . 'com_publications' . DS . 'helpers' . DS . 'html.php');
+		
+		$path = \Component::path('com_publications');
+		require_once $path . DS . 'tables' . DS . 'logs.php';
+		require_once $path . DS . 'tables' . DS . 'publication.php';
+		require_once $path . DS . 'tables' . DS . 'author.php';
+		require_once $path . DS . 'tables' . DS . 'category.php';
+		require_once $path . DS . 'tables' . DS . 'version.php';
+		require_once $path . DS . 'helpers' . DS . 'html.php';
 	}
 
 	/**
@@ -151,7 +152,7 @@ class plgMembersRepository extends \Hubzero\Plugin\Plugin
 
 		if ($returnhtml)
 		{
-			require_once(PATH_CORE . DS . 'components' . DS . 'com_publications' . DS . 'tables' . DS . 'version.php');
+			require_once \Component::path('com_publications') . DS . 'tables' . DS . 'version.php';
 
 			$this->_option = $option;
 
