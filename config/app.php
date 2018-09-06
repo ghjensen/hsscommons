@@ -1,10 +1,10 @@
 <?php
 return array(
-	'application_env' => 'development',
+	'application_env' => 'production',
 	'editor' => 'ckeditor',
 	'list_limit' => '20',
 	'helpurl' => 'http://www.hubzero.org',
-	'debug' => '1',
+	'debug' => '0',
 	'debug_lang' => '0',
 	'feed_limit' => '10',
 	'feed_email' => 'author',
