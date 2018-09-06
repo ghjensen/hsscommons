@@ -17,7 +17,6 @@
 	font-family: 'Kaushan Script';
 	font-style: normal;
 	font-weight: 400;
-	font-display: optional;
 	src: local('Kaushan Script'),
 		 local('KaushanScript-Regular'),
 		 url('@{pathFonts}kaushanscript/KaushanScript-Regular.ttf') format('truetype'); //,
@@ -27,7 +26,6 @@
 // Body font
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-Light-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-Light-webfont.woff') format('woff'),
@@ -39,7 +37,6 @@
 
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-LightItalic-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-LightItalic-webfont.woff') format('woff'),
@@ -51,7 +48,6 @@
 
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-Regular-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-Regular-webfont.woff') format('woff'),
@@ -63,7 +59,6 @@
 
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-Italic-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-Italic-webfont.woff') format('woff'),
@@ -75,7 +70,6 @@
 
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-Semibold-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-Semibold-webfont.woff') format('woff'),
@@ -87,7 +81,6 @@
 
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-SemiboldItalic-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-SemiboldItalic-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-SemiboldItalic-webfont.woff') format('woff'),
@@ -99,7 +92,6 @@
 
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-Bold-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-Bold-webfont.woff') format('woff'),
@@ -111,12 +103,67 @@
 
 @font-face {
 	font-family: 'OpenSans';
-	font-display: optional;
 	src: url('@{pathFonts}opensans/OpenSans-BoldItalic-webfont.eot');
 	src: url('@{pathFonts}opensans/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('@{pathFonts}opensans/OpenSans-BoldItalic-webfont.woff') format('woff'),
 		 url('@{pathFonts}opensans/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
 		 url('@{pathFonts}opensans/OpenSans-BoldItalic-webfont.svg#OpenSansBoldItalic') format('svg');
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-Regular.ttf') format('truetype');
+	font-weight: 400; /* 400 */
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-RegularItalic.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	src: url('@{pathFonts}oswald/Oswald-BoldItalic.ttf') format('truetype');
 	font-weight: 700;
 	font-style: italic;
 }

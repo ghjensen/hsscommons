@@ -14,8 +14,7 @@
 */
 
 	.home #masthead {
-		background: transparent;
-		color: #fff;
+		color: #666;
 	}
 	.home #masthead h1 a {
 		color: #fff;
@@ -30,11 +29,10 @@
 	.home #sub-masthead {
 		display: none;
 	}
-
+	/*
 	.dark #masthead.fixed #account>ul>li>a,
 	.home #account>ul>li>a {
 		color: #ccc;
-		color: rgba(255, 255, 255, 0.8);
 	}
 	.home.dark #masthead.fixed {
 		background: #333;
@@ -42,14 +40,14 @@
 	}
 	.home.dark #masthead.fixed h1 a {
 		color: #fff;
-	}
+	}*/
 
 	.home #nav ul.menu>li>a {
 		color: #666;
 	}
 	.home #nav ul.menu>li:hover>a,
 	.home #nav ul.menu>li:focus>a {
-		color: #222;
+		color: #3289c7;
 	}
 
 	.home .fixed #nav ul.menu>li>a {
@@ -60,14 +58,14 @@
 	}
 	.home .fixed #nav ul.menu>li:hover>a,
 	.home .fixed #nav ul.menu>li:focus>a {
-		color: #222;
+		color: #3289c7;
 	}
 	.home .fixed #account>ul>li>a {
 		color: #666;
 	}
 	.home .fixed #account>ul>li>a:hover,
 	.home .fixed #account>ul>li>a:focus {
-		color: #222;
+		color: #3289c7;
 	}
 
 	.com_content .contentpaneopen {
@@ -98,7 +96,7 @@
 		margin: 90px auto;
 		padding: 30px 0;
 		text-align: left;
-		border-top: 1px solid rgba(255, 255, 255, 0.2);
+		//border-top: 1px solid rgba(255, 255, 255, 0.2);
 	}
 	#welcome h2 {
 		margin: 0;
@@ -108,7 +106,7 @@
 		letter-spacing: 0.075em;
 		position: relative;
 	}
-	#welcome h2:after {
+	/*#welcome h2:after {
 		content: "";
 		position: absolute;
 		border: none;
@@ -118,7 +116,7 @@
 		background: #fff;
 		left: 0;
 		top: -30px;
-	}
+	}*/
 	#welcome p {
 		margin: 0;
 		padding: 15px 0 0 0;
@@ -374,10 +372,10 @@
 		font-family: 'Fontcons';
 		color: #fff;
 		font-weight: normal;
-		-webkit-transition: all 300ms ease; 
-		   -moz-transition: all 300ms ease; 
-		    -ms-transition: all 300ms ease; 
-		     -o-transition: all 300ms ease; 
+		-webkit-transition: all 300ms ease;
+		   -moz-transition: all 300ms ease;
+		    -ms-transition: all 300ms ease;
+		     -o-transition: all 300ms ease;
 		        transition: all 300ms ease;
 		background: #ccc;
 		text-align: center;
@@ -547,7 +545,7 @@
 	}
 
 	.events-section table.latest_events_tbl,
-	.events-section table.latest_events_tbl td, 
+	.events-section table.latest_events_tbl td,
 	.events-section table.latest_events_tbl th {
 		border: none;
 	}
@@ -584,7 +582,7 @@
 	.events-section table.mod_events_calendar .daywithevents {
 		background-color: #f1f1f1;
 	}
-	.events-section table.mod_events_calendar .prev, 
+	.events-section table.mod_events_calendar .prev,
 	.events-section table.mod_events_calendar .next {
 		display: block;
 		width: 1em;
@@ -603,7 +601,7 @@
 	.events-section table.mod_events_calendar .next {
 		right: 0;
 	}
-	.events-section table.mod_events_calendar .prev:hover, 
+	.events-section table.mod_events_calendar .prev:hover,
 	.events-section table.mod_events_calendar .next:hover {
 		border: none;
 		color: #333;
@@ -761,8 +759,7 @@
 	.dark #masthead.fixed #nav ul.menu>li>a,
 	.home #account>ul>li>a,
 	.home #nav ul.menu>li>a {
-		color: #ccc;
-		color: rgba(255, 255, 255, 0.8);
+		color: #666;
 	}
 	.dark #masthead.fixed #nav ul.menu>li:hover>a,
 	.dark #masthead.fixed #nav ul.menu>li:focus>a,
@@ -775,7 +772,7 @@
 	.home #nav ul.menu>li:focus>a,
 	.home #nav ul.menu>li>a:hover,
 	.home #nav ul.menu>li>a:focus {
-		color: #fff;
+		color: #3289c7;
 	}
 	#features .box:after {
 		left: 30px;

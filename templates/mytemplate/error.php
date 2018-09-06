@@ -67,7 +67,7 @@ Lang::load('tpl_' . $this->template, __DIR__);
 		<div id="errorbox">
 			<header id="masthead">
 				<h1>
-					<a href="<?php echo empty($this->baseurl) ? '/' : $this->baseurl; ?>" title="<?php echo Config::get('sitename'); ?>">
+					<a href="/" title="<?php echo Config::get('sitename'); ?>">
 						<span><?php echo Config::get('sitename'); ?></span>
 					</a>
 				</h1>
