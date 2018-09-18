@@ -362,7 +362,7 @@ class Doi extends Obj
 	 * @param   string  $status  DOI status [public, reserved]
 	 * @return  string  response string
 	 */
-	public function startInput($status = 'public')
+	public function startInput($status = 'public', $doi = null)
 	{
 		if (!$this->checkRequired())
 		{
@@ -371,11 +371,15 @@ class Doi extends Obj
 		}
 
 		$input  = "_target: " . $this->get('url') ."\n";
-		$input .= "datacite.creator: " . $this->get('creator') . "\n";
-		$input .= "datacite.title: ". $this->get('title') . "\n";
-		$input .= "datacite.publisher: " . $this->get('publisher') . "\n";
-		$input .= "datacite.publicationyear: " . $this->get('pubYear') . "\n";
-		$input .= "datacite.resourcetype: " . $this->get('resourceType') . "\n";
+		// Only send out these fields for a new DOI register
+		if (!$doi)
+		{
+			$input .= "datacite.creator: " . $this->get('creator') . "\n";
+			$input .= "datacite.title: ". $this->get('title') . "\n";
+			$input .= "datacite.publisher: " . $this->get('publisher') . "\n";
+			$input .= "datacite.publicationyear: " . $this->get('pubYear') . "\n";
+			$input .= "datacite.resourcetype: " . $this->get('resourceType') . "\n";
+		}
 		$input .= "_profile: datacite". "\n";
 
 		$status = strtolower($status);
@@ -409,7 +413,6 @@ class Doi extends Obj
 			CURLOPT_HTTPHEADER      => array('Content-Type: text/plain; charset=UTF-8', 'Content-Length: ' . strlen($postvals))
 		);
 		curl_setopt_array($ch, $options);
-
 		$response = curl_exec($ch);
 		$success = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
@@ -519,7 +522,7 @@ class Doi extends Obj
 			return false;
 		}
 
-		$input = $this->startInput($status);
+		$input = $this->startInput($status,$doi);
 		if (!$input)
 		{
 			// Cannot process if any required fields are missing
