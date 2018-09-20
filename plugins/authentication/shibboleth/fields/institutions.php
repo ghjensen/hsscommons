@@ -140,7 +140,9 @@ class Institutions extends Field
 			}
 			$rv[] = $item;
 		}
-		$rv = array_merge($rv, self::getResearchAndScholarshipIdps($curl));
+		//The getResearchAndScholarshipIdps() process is very slow so it causes 500 error for user login and register
+		// Also it only loads Idps from US. Therefore, skip it
+		//$rv = array_merge($rv, self::getResearchAndScholarshipIdps($curl));
 		curl_close($curl);
 		return array($mtime, $rv);
 	}

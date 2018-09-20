@@ -47,7 +47,7 @@
 	width: 30px;
 	height: 31px;
 	display: inline-block;
-	background: url('../img/incommon-30x30.png') no-repeat center center transparent;
+	background: url('../img/canarie.png') no-repeat center center transparent;
 	margin-top: 8px;
 	margin-right: 2px;
 	border-radius: 3px;
@@ -92,10 +92,10 @@
 	width: 32px;
 	margin-left: -8px;
 }
-.shibboleth.account .dropdown-menu, .incommon-color, .auth .shibboleth.account {
-	background: #007db1 !important; /* color from InCommon branding */
+.shibboleth.account .dropdown-menu, .canariecaf-color, .auth .shibboleth.account {
+	background: #EC7F3F !important; /* color from InCommon branding */
 }
-.shibboleth.account .dropdown-menu a, .incommon-color a {
+.shibboleth.account .dropdown-menu a, .canariecaf-color a {
 	color: #fff;
 }
 .shibboleth.account .bootstrap-select .logo-placeholder {
