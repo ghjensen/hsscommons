@@ -36,7 +36,7 @@ if (PHP_SAPI !== 'cli') {
 }
 
 $mdSource = 'https://md.incommon.org/InCommon/InCommon-metadata.xml';
-$cache = '/www/tmp/incommon-rs-entities.json';
+$cache = '/tmp/incommon-rs-entities.json';
 
 /**
  * Get a list of research and scholarship IDs
@@ -52,18 +52,17 @@ curl_setopt($ch, \CURLOPT_HTTPHEADER, []);
 curl_setopt($ch, \CURLOPT_TIMEOUT, 60);
 if (file_exists($cache))
 {
-	curl_setopt($ch, \CURLOPT_HTTPHEADER, ['If-Modified-Since: '.gmdate('D, d M Y H:i:s \G\M\T', filemtime($cache))]);
-	$xml = curl_exec($ch);
-	if (curl_getinfo($ch, \CURLINFO_HTTP_CODE) == 304)
+	$headers = get_headers( $mdSource , 1 );
+	$remote_mod_date = strtotime( $headers['Last-Modified'] );
+        $local_mod_date = filemtime( $cache );
+	if ( $local_mod_date >= $remote_mod_date )
 	{
 		echo file_get_contents($cache);
 		exit();
 	}
 }
-else
-{
-	$xml = curl_exec($ch);
-}
+
+$xml = curl_exec($ch);
 
 if (!$xml) {
 	echo '[]';
