@@ -9,7 +9,7 @@ class JConfig
 	var $debug_lang = '0';
 	var $feed_limit = '10';
 	var $feed_email = 'author';
-	var $secret = 'CDQpt56kK6';
+	var $secret = '';
 	var $gzip = '0';
 	var $error_reporting = 'default';
 	var $api_server = '1';
@@ -32,7 +32,7 @@ class JConfig
 	var $dbtype = 'pdo';
 	var $host = 'localhost';
 	var $user = 'hsscommons';
-	var $password = 'hT4SWpNt3Qbxt4';
+	var $password = '';
 	var $db = 'hsscommons';
 	var $dbcharset = '';
 	var $dbcollation = '';
@@ -50,7 +50,7 @@ class JConfig
 	var $smtphost = 'localhost';
 	var $smtpport = '25';
 	var $smtpuser = 'admin';
-	var $smtppass = '9rrwyrxaTvDZ63';
+	var $smtppass = '';
 	var $smtpsecure = 'none';
 	var $sendmail = '/usr/sbin/sendmail';
 	var $MetaAuthor = '1';
