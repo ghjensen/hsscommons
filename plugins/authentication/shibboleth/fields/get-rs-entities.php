@@ -35,8 +35,8 @@ if (PHP_SAPI !== 'cli') {
 	exit();
 }
 
-$mdSource = 'https://md.incommon.org/InCommon/InCommon-metadata.xml';
-$cache = '/tmp/incommon-rs-entities.json';
+$mdSource = 'https://caf-shib2ops.ca/CoreServices/caf_metadata_signed_sha256.xml';
+$cache = '/tmp/caf-rs-entities.json';
 
 /**
  * Get a list of research and scholarship IDs
