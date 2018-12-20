@@ -37,7 +37,7 @@ defined('_HZEXEC_') or die();
 use Hubzero\Utility\Cookie;
 
 /**
- * Authentication Plugin class for Shibboleth/InCommon
+ * Authentication Plugin class for Shibboleth
  */
 class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 {
@@ -110,7 +110,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		// oops ... hopefully not reachable
 		if (!($idp = $dbh->loadResult()) || !($label = self::getInstitutionByEntityId($idp, 'label')))
 		{
-			return 'InCommon';
+			return 'CAF';
 		}
 
 		return $label;
@@ -194,7 +194,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 	 * plugin name is used (EX: "link your Shibboleth account").
 	 *
 	 * Neither is appropriate here because we want to vary the text based on the
-	 * ID provider used. I don't think the average user knows what InCommon or
+	 * ID provider used. I don't think the average user knows what CAF or
 	 * Shibboleth mean in this context.
 	 *
 	 * @return  string
@@ -207,7 +207,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			return $rv;
 		}
 		// Probably only possible if the user abruptly deletes their cookies
-		return 'InCommon';
+		return 'CAF';
 	}
 
 	/**
@@ -330,15 +330,8 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 	public function status()
 	{
 		self::log('status');
-		$sess = null;
-		if (($key = trim(isset($_COOKIE['shib-session']) ? $_COOKIE['shib-session'] : (isset($_GET['shib-session']) ? $_GET['shib-session'] : null))))
-		{
-			self::log('status', $key);
-			$dbh = App::get('db');
-			$dbh->setQuery('SELECT data FROM `#__shibboleth_sessions` WHERE session_key = '.$dbh->quote($key));
-			$dbh->execute();
-			$sess = $dbh->loadResult();
-		}
+
+		$sess = isset($_COOKIE['shibboleth-session']) ? $_COOKIE['shibboleth-session'] : null;
 
 		if ($sess)
 		{
@@ -375,7 +368,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			self::log('already logged in, redirect for link');
 			list($service, $com_user, $task) = self::getLoginParams();
-			App::redirect($service . '/index.php?option=' . $com_user . '&task=' . $task . '&authenticator=shibboleth&shib-session=' . urlencode($_COOKIE['shib-session']));
+			App::redirect($service . '/index.php?option=' . $com_user . '&task=' . $task . '&authenticator=shibboleth');
 		}
 
 		// Extract variables set by mod_shib, if any
@@ -417,15 +410,9 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 				$attrs['displayName'] = $attrs['givenName'].' '.$attrs['sn'];
 			}
 			$options['shibboleth'] = $attrs;
+			App::get('session')->set('shibboleth.session', $attrs);
+ 			setcookie('shibboleth-session', json_encode($attrs), time()+600, '/');
 			self::log('session attributes: ', $attrs);
-			self::log('cookie', $_COOKIE);
-			self::log('server attributes: ', $_SERVER);
-			//JFactory::getSession()->set('shibboleth.session', $attrs);
-			$key = trim(base64_encode(openssl_random_pseudo_bytes(128)));
-			setcookie('shib-session', $key);
-			$dbh = App::get('db');
-			$dbh->setQuery('INSERT INTO #__shibboleth_sessions(session_key, data) VALUES('.$dbh->quote($key).', '.$dbh->quote(json_encode($attrs)).')');
-			$dbh->execute();
 		}
 	}
 
@@ -543,7 +530,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 	public function onUserAuthenticate($credentials, $options, &$response)
 	{
 		// eppn is eduPersonPrincipalName and is the absolute lowest common
-		// denominator for InCommon attribute exchanges. We can't really do
+		// denominator for CAF attribute exchanges. We can't really do
 		// anything without it
 		if (isset($options['shibboleth']['eppn']))
 		{
