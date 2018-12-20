@@ -298,7 +298,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		list($a, $h) = self::htmlify();
 
 		// Make a dropdown/button combo that (hopefully) gets prettied up client-side into a bootstrap dropdown
-		$html = ['<div class="shibboleth account incommon-color" data-placeholder="'.$a($title).'">'];
+		$html = ['<div class="shibboleth account canariecaf-color" data-placeholder="'.$a($title).'">'];
 		$html[] = '<h3>Select an affiliated institution</h3>';
 		$html[] = '<ol>';
 		$html = array_merge($html, array_map(function($idp) use($h, $a) {
