@@ -536,7 +536,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			self::log('auth with', $options['shibboleth']);
 			$method = (\Component::params('com_users')->get('allowUserRegistration', false)) ? 'find_or_create' : 'find';
-			$hzal = \Hubzero\Auth\Link::$method('authentication', 'shibboleth', $options['shibboleth']['idp'], $options['shibboleth']['eppn']);
+			$hzal = \Hubzero\Auth\Link::$method('authentication', 'shibboleth', $options['shibboleth']['idp'], md5($options['shibboleth']['eppn']));
 
 			if ($hzal === false)
 			{
@@ -609,7 +609,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			self::log('link', $status);
 			// Get unique username
-			$username = $status['eppn'];
+			$username = md5($status['eppn']);
 			$hzad = \Hubzero\Auth\Domain::getInstance('authentication', 'shibboleth', $status['idp']);
 
 			if (\Hubzero\Auth\Link::getInstance($hzad->id, $username))
