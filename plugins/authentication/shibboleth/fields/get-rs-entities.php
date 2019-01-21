@@ -35,8 +35,8 @@ if (PHP_SAPI !== 'cli') {
 	exit();
 }
 
-$mdSource = 'https://caf-shib2ops.ca/CoreServices/caf_metadata_signed_sha256.xml';
-$cache = '/tmp/caf-rs-entities.json';
+$mdSource = 'https://md.incommon.org/InCommon/InCommon-metadata.xml';
+$cache = '/www/tmp/incommon-rs-entities.json';
 
 /**
  * Get a list of research and scholarship IDs
@@ -52,17 +52,18 @@ curl_setopt($ch, \CURLOPT_HTTPHEADER, []);
 curl_setopt($ch, \CURLOPT_TIMEOUT, 60);
 if (file_exists($cache))
 {
-	$headers = get_headers( $mdSource , 1 );
-	$remote_mod_date = strtotime( $headers['Last-Modified'] );
-        $local_mod_date = filemtime( $cache );
-	if ( $local_mod_date >= $remote_mod_date )
+	curl_setopt($ch, \CURLOPT_HTTPHEADER, ['If-Modified-Since: '.gmdate('D, d M Y H:i:s \G\M\T', filemtime($cache))]);
+	$xml = curl_exec($ch);
+	if (curl_getinfo($ch, \CURLINFO_HTTP_CODE) == 304)
 	{
 		echo file_get_contents($cache);
 		exit();
 	}
 }
-
-$xml = curl_exec($ch);
+else
+{
+	$xml = curl_exec($ch);
+}
 
 if (!$xml) {
 	echo '[]';
@@ -78,7 +79,10 @@ $rv = [];
 // select entities having the saml attribute indicating that they are research & scholarship category members
 // being members ourselves, we can get attributes about users released fromt these entities
 foreach ($xp->xpath('//base:EntityDescriptor[
-	base:Extensions
+	base:Extensions/
+		mdattr:EntityAttributes/
+			saml:Attribute[attribute::Name="http://macedir.org/entity-category-support"]/
+				saml:AttributeValue[text()="http://id.incommon.org/category/research-and-scholarship" or text()="http://refeds.org/category/research-and-scholarship"]
 	]') as $entity)
 {
 	// easier to work with as an array, the SimpleXMLElement class is bizarre

@@ -41,7 +41,7 @@ HUBzero is a registered trademark of Purdue University.
 		<filename plugin="shibboleth">shibboleth.php</filename>
 	</files>
 	<config>
-		<fields name="params" addfieldpath="/app/plugins/authentication/shibboleth/fields">
+		<fields name="params" addfieldpath="/core/plugins/authentication/shibboleth/fields">
 			<fieldset name="basic">
 				<field name="site_login" type="radio" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_SITELOGIN_LABEL" default="1" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_SITELOGIN_DESC">
 					<option value="0">JNo</option>
