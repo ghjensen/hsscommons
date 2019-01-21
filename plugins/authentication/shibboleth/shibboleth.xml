@@ -68,9 +68,6 @@ HUBzero is a registered trademark of Purdue University.
 			<fieldset name="Links">
 				<field name="links" type="links" default="[]" />
 			</fieldset>
-			<fieldset name="Institutions">
-				<field name="institutions" type="institutions" default='{"xmlPath": "/etc/shibboleth/shibboleth2.xml", "xmlRead": null, "idps": [], "activeIdps": []}' />
-			</fieldset>
 		</fields>
 	</config>
 </extension>

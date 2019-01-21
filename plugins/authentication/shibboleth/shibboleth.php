@@ -37,7 +37,7 @@ defined('_HZEXEC_') or die();
 use Hubzero\Utility\Cookie;
 
 /**
- * Authentication Plugin class for Shibboleth/InCommon
+ * Authentication Plugin class for Shibboleth/CAF
  */
 class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 {
@@ -110,7 +110,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		// oops ... hopefully not reachable
 		if (!($idp = $dbh->loadResult()) || !($label = self::getInstitutionByEntityId($idp, 'label')))
 		{
-			return 'InCommon';
+			return 'CAF';
 		}
 
 		return $label;
@@ -194,7 +194,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 	 * plugin name is used (EX: "link your Shibboleth account").
 	 *
 	 * Neither is appropriate here because we want to vary the text based on the
-	 * ID provider used. I don't think the average user knows what InCommon or
+	 * ID provider used. I don't think the average user knows what CAF or
 	 * Shibboleth mean in this context.
 	 *
 	 * @return  string
@@ -207,7 +207,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			return $rv;
 		}
 		// Probably only possible if the user abruptly deletes their cookies
-		return 'InCommon';
+		return 'CAF';
 	}
 
 	/**
@@ -271,41 +271,13 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			return '<span />';
 		}
-		// Saved id provider? Use it as the default
-		$prefill = isset($_COOKIE['shib-entity-id']) ? $_COOKIE['shib-entity-id'] : null;
-		if (!$prefill && // no cookie
-				($host = self::getHostByAddress(isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'], $params->get('dns', '8.8.8.8'))) && // can get a host
-				preg_match('/[.]([^.]*?[.][a-z0-9]+?)$/', $host, $ma))
-		{ // Hostname lookup seems php jsonrational (not an ip address, has a few dots in it)
-			// Try to look up a provider to pre-select based on the user's hostname
-			foreach (self::getInstitutions() as $inst)
-			{
-				if (fnmatch('*'.$ma[1], $inst['host']))
-				{
-					$prefill = $inst['entity_id'];
-					break;
-				}
-			}
-		}
-
-		// Attach style and scripts
-		foreach (array('bootstrap-select.min.js', 'shibboleth.js', 'bootstrap-select.min.css', 'bootstrap-theme.min.css', 'shibboleth.css') as $asset)
-		{
-			$mtd = 'addPlugin'.(preg_match('/[.]js$/', $asset) ? 'script': 'stylesheet');
-			\Hubzero\Document\Assets::$mtd('authentication', 'shibboleth', $asset);
-		}
-
-		list($a, $h) = self::htmlify();
-
-		// Make a dropdown/button combo that (hopefully) gets prettied up client-side into a bootstrap dropdown
-		$html = ['<div class="shibboleth account incommon-color" data-placeholder="'.$a($title).'">'];
-		$html[] = '<h3>Select an affiliated institution</h3>';
-		$html[] = '<ol>';
-		$html = array_merge($html, array_map(function($idp) use($h, $a) {
-			return '<li data-entityid="'.$a($idp['entity_id']).'" data-content="'.(isset($idp['logo_data']) ? $a($idp['logo_data']) : '').' '.$h($idp['label']).'"><a href="'.Route::url('index.php?option=com_users&view=login&authenticator=shibboleth&idp='.$a($idp['entity_id'])).'">'.$h($idp['label']).'</a></li>';
-		}, self::getInstitutions()));
-		$html[] = '</ol></div>';
-		return $html;
+                
+		// Attach CAF style and login
+		\Hubzero\Document\Assets::addPluginstylesheet('authentication', 'shibboleth', 'canariecaf.css');
+		$login_provider_html = '<a class="canariecaf account canariecaf-color" href="' . Route::url('login/shibboleth') . '">';
+		$login_provider_html .= '<div class="signin">Sign in with CAF</div>';
+		$login_provider_html .= '</a>';
+		return $login_provider_html;
 	}
 
 	/**
@@ -379,7 +351,6 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		}
 
 		// Extract variables set by mod_shib, if any
-		// https://www.incommon.org/federation/attributesummary.html
 		if (($sid = isset($_SERVER['REDIRECT_Shib-Session-ID']) ? $_SERVER['REDIRECT_Shib-Session-ID'] : (isset($_SERVER['Shib-Session-ID']) ? $_SERVER['Shib-Session-ID'] : null)))
 		{
 			$attrs = array(
@@ -463,7 +434,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			self::log('failed to look up entity id, redirect', array('eid' => $eid, 'url' => $service.'/index.php?option='.$com_user.'&task=login'.$return));
 			App::redirect($service.'/index.php?option='.$com_user.'&task=login'.$return);
 		}
-
+		
 		// We're about to do at least a few redirects, some of which are out of our
 		// control, so save a bit of state for when we get back
 		//
