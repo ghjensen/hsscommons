@@ -69,7 +69,7 @@ class plgCronShibboleth extends \Hubzero\Plugin\Plugin
 	{
 		# Get the config values	
 		$hours = (int)$this->params->get('hours', '24');
-		$date = date("Y-m-d H:i:s", strtotime('-' . $hours. ' hours', time()));
+		$date = gmdate("Y-m-d H:i:s", strtotime('-' . $hours. ' hours', time()));
 		
 		# Remove the Shibboleth Sessions created before the configured time period	
 		$db = App::get('db');
