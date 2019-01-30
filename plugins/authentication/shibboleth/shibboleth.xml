@@ -62,7 +62,7 @@ HUBzero is a registered trademark of Purdue University.
 					<option value="0">JNo</option>
 					<option value="1">JYes</option>
 				</field>
-				<field name="debug_location" type="text" size="35" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_LABEL" default="/var/log/apache2/php/shibboleth.log" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_DESC" />
+				<field name="debug_location" type="text" size="35" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_LABEL" default="/var/log/apache2/shibboleth.log" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_DESC" />
 				<field name="testkey" type="text" size="20" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_TESTING_MODE_LABEL" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_TESTING_MODE_DESC" />
 			</fieldset>
 			<fieldset name="Links">

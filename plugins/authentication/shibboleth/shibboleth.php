@@ -61,7 +61,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			if (!\Log::has('shib'))
 			{
-				$location = $params->get('debug_location', '/var/log/apache2/php/shibboleth.log');
+				$location = $params->get('debug_location', '/var/log/apache2/shibboleth.log');
 				$location = explode(DS, $location);
 				$file     = array_pop($location);
 
