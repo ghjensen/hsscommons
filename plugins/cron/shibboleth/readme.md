@@ -1,12 +1,16 @@
-To install this Plugin, please follow these steps:
+###Introduction
+This plugin provide the functionality to cleanup the backend shibboleth session table by running a CRON job. It can be configured to clean up entries older than X hours.
+
+###Installation
 
 1. Upload the entire content of this extension to the /yourhub/app/plugins/cron/shibboleth/ directory.
 2. Run the "muse" command to add it:
-	/yourhub/muse extension
+
+	muse extension
 	What do you want to do? [add|delete|install|enable|disable] add
 	What extension were you wanting to add? plg_cron_shibboleth
 
-To change the time period for the Shibboleth Session cleanup:
+###Change the time period for the cleanup
 
 1. Log in to the administrative back-end of yourhub.
 2. Navigate to Extensions -> Plug-in Manager, search for "Cron".
@@ -14,7 +18,7 @@ To change the time period for the Shibboleth Session cleanup:
 4. In the Basic Options, set the value according to your need. The default value is 24 hours.
 5. Save your change.
 
-To set up a cron job for the Shibboleth Session cleanup:
+###Set up a cron job for the cleanup
 
 1. Log in to the administrative back-end of yourhub.
 2. Navigate to Components -> Cron.
