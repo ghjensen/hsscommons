@@ -22,19 +22,7 @@ See [Shibboleth wiki entry on service provider installation](https://wiki.shibbo
 
 ###3.1 Shibboleth
 
-####3.1.1 Certificates
-
-As root, run the script shib-keygen, which was installed as part of the package. This will generate a key pair for your service provider to use. No further configuration is required for this; the software will find the keys when the shibd service is restarted.
-
-output
-
-Generating a 2048 bit RSA private key
-........................................................................................+++
-.....................+++
-writing new private key to '/etc/shibboleth/sp-key.pem'
------
-
-####3.1.2 /etc/shibboleth/attribute-map.xml
+####3.1.1 /etc/shibboleth/attribute-map.xml
 
 This file controls which attributes (bits of user information) the software will extract during login when the identity provider makes them available.
 
@@ -60,7 +48,7 @@ Name & email (probably not enabled by default):
     <Attribute name="urn:oid:2.16.840.1.113730.3.1.241" id="displayName"/>
     <Attribute name="urn:oid:0.9.2342.19200300.100.1.3" id="mail"/>
 
-####3.1.3 /etc/shibboleth/shibboleth2.xml
+####3.1.2 /etc/shibboleth/shibboleth2.xml
 
 This is the main configuration, which controls how the software federates with identity providers.
 
@@ -93,9 +81,7 @@ If this is a production machine you will want to set a real email for the suppor
 
 Finally, you will need to configure how and where the software looks for metadata about identity providers. This is just a list of providers you can support, including some helpful annotations like where the service URLs and what public key to use when communicating with it.
 
-Metadata provider: CAF
-
-If your plans include membership in the CAF, this is the incantation, below the Sessions tag and at the same scope:
+If your plans include membership in CAF, please add the following lines below the Sessions tag and at the same scope:
 
 	<MetadataProvider type="XML" uri="http://caf-shib2ops.ca/CoreServices/caf_metadata_signed_sha256.xml" backingFilePath="CAF-metadata.xml" reloadInterval="3600">
             <MetadataFilter type="Signature" certificate="caf_metadata_verify.crt"/>
@@ -108,7 +94,7 @@ If this is a test/development manchine, please use the Test Federation by replac
 
 ###3.2 Apache
 
-####3.2.1 Quoth the [Shibboleth wiki entry on service provider installation](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRPMInstall):
+####3.2.1 Quote the [Shibboleth wiki entry on service provider installation](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRPMInstall):
 
 - UseCanonicalName On
 - Ensure that the ServerName directive is properly set, and that Apache is being started with SSL enabled.
@@ -119,7 +105,7 @@ Typically this means that there is a symlink /etc/apache2/mods-enabled/shib2.loa
 
 `service shibd status`
 
-[ ok ] shibd is running.
+	[ ok ] shibd is running.
 
 ####3.2.2 /etc/apache2/sites-enabled/{your-ssl-enabled-config-file}
 
@@ -139,7 +125,7 @@ You probably have a rule that directs all requests that appear to be for HUBzero
         RewriteCond     %{REQUEST_URI}          !^/Shibboleth.sso/.*$ [NC]
         RewriteRule     (.*)                    index.php
 
-Finally, we actually protect the entityID location /login/shibboleth. We can redirect a user to this path to require them to make a Shibboleth login. Shibboleth won’t know specifically how to do that so it will make a request to the wayf location defined above in shibboleth2.xml. This is part of the HUBzero CMS that knows already which provider the user selected from the login page, so it spits back the appropriate identity provider entityId. From there the metadata is referenced to find the endpoint associated with that institution, and the user is sent to the login page. They come back to /login/shibboleth upon submission, but now the requirement to have a Shibboleth session is satisified, and the rewritten URL referencing user.login is served to complete the process.
+Finally, we actually protect the entityID location /login/shibboleth. We can redirect a user to this path to require them to make a Shibboleth login. Shibboleth won’t know specifically how to do that so it will make a request to the wayf location defined above in shibboleth2.xml. This is part of the HUBzero CMS that knows already which provider the user selected from the login page, so it spits back the appropriate identity provider entityId. From there the metadata is referenced to find the endpoint associated with that institution, and the user is sent to the login page. They come back to /login/shibboleth upon submission, but now the requirement to have a Shibboleth session is satisfied, and the rewritten URL referencing user.login is served to complete the process.
 
         <Location /login/shibboleth>
                 AuthType shibboleth
@@ -147,7 +133,7 @@ Finally, we actually protect the entityID location /login/shibboleth. We can red
                 Require valid-user
         </Location>
 
-Restart the shibd and apache2 services when satisified with this configuration.
+Restart the shibd and apache2 services when satisfied with this configuration.
 
 
 ## 4. HUBzero CMS Plugin
