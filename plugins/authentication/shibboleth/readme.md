@@ -1,6 +1,6 @@
 1. Introduction
 
-This is a modified versoin of Hubzero document for their Shibboleth plugin (https://help.hubzero.org/documentation/220/installation/debian/addons/incommon) so that it can be used with CAF.
+This is a modified version of Hubzero document for their Shibboleth plugin (https://help.hubzero.org/documentation/220/installation/debian/addons/incommon) so that it can be used with CAF.
 
 This plugin provides some code necessary to allow your hub to accept credentials using the Shibboleth system with CAF.
 
@@ -15,7 +15,7 @@ Debian
  
 Redhat Enterprise Linux & other distributions
 
-See Shibboleth wiki entry on service provider installation for information on how to add the Shibboleth software to your list of repositories so that it can be installed and upgraded through yum, or, failing that, how to install from SRPMS.
+See Shibboleth wiki entry on service provider installation (https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRPMInstall) for information on how to add the Shibboleth software to your list of repositories so that it can be installed and upgraded through yum, or, failing that, how to install from SRPMS.
 
 
 3. Configuration
@@ -48,6 +48,7 @@ eppn (username, probably already enabled in the shipped configuration):
     <Attribute name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" id="eppn">
         <AttributeDecoder xsi:type="ScopedAttributeDecoder"/>
     </Attribute>
+
 Name & email (probably not enabled by default):
 
     <Attribute name="urn:mace:dir:attribute-def:sn" id="sn"/>
@@ -63,7 +64,7 @@ Name & email (probably not enabled by default):
 
 This is the main configuration, which controls how the software federates with identity providers.
 
-First, replace $YOUR_HOSTNAME with, uh, your hostname, in the entityID attribute near the top of the file:
+First, replace $YOUR_HOSTNAME with your hostname, in the entityID attribute near the top of the file:
 
        <ApplicationDefaults entityID="https://$YOUR_HOSTNAME/login/shibboleth" REMOTE_USER="eppn persistent-id targeted-id">
 
@@ -102,7 +103,7 @@ If your plans include membership in the CAF, this is the incantation, below the 
 
 Install https://caf-shib2ops.ca/CoreServices/caf_metadata_verify.crt as /etc/shibboleth/caf_metadata_verify.crt so it’s available for this provider.
 
-If this is a test/development manchine, please use the Test Federation by replacing the uri in the MetadataProvider with "https://caf-shib2ops.ca/CoreServices/testbed/caf_test_fed_unsigned.xml".
+If this is a test/development manchine, please use the Test Federation by replacing the URI in the MetadataProvider with "https://caf-shib2ops.ca/CoreServices/testbed/caf_test_fed_unsigned.xml".
 
 
 3.2 Apache
