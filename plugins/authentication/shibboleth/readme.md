@@ -1,8 +1,8 @@
 ## 1. Introduction
 
-This is a modified version of Hubzero document for [Shibboleth plugin for InCommon](https://help.hubzero.org/documentation/220/installation/debian/addons/incommon) so that it can be used with Canadian Access Federation (CAF).
+This is a modified version of HUBzero document for [Shibboleth plugin for InCommon](https://help.hubzero.org/documentation/220/installation/debian/addons/incommon) so that it can be used with Canadian Access Federation (CAF).
 
-This plugin provides some code necessary to allow your hub to accept credentials using the Shibboleth system with CAF.
+This plugin provides the code necessary to allow your hub to accept credentials using the Shibboleth system with CAF.
 
 You will need to get your hub added to CAF XML manifest as a service provider.
 
@@ -20,9 +20,21 @@ See [Shibboleth wiki entry on service provider installation](https://wiki.shibbo
 
 ## 3. Configuration
 
-###3.1 Shibboleth
+### 3.1 Shibboleth
 
-####3.1.1 /etc/shibboleth/attribute-map.xml
+#### 3.1.1 Certificates
+
+As root, run the script `shib-keygen`, which was installed as part of the package. This will generate a key pair for your service provider to use. No further configuration is required for this; the software will find the keys when the shibd service is restarted.
+
+output
+
+	Generating a 2048 bit RSA private key
+	........................................................................................+++
+	.....................+++
+	writing new private key to '/etc/shibboleth/sp-key.pem'
+	-----
+
+#### 3.1.2 /etc/shibboleth/attribute-map.xml
 
 This file controls which attributes (bits of user information) the software will extract during login when the identity provider makes them available.
 
@@ -48,11 +60,11 @@ Name & email (probably not enabled by default):
     <Attribute name="urn:oid:2.16.840.1.113730.3.1.241" id="displayName"/>
     <Attribute name="urn:oid:0.9.2342.19200300.100.1.3" id="mail"/>
 
-####3.1.2 /etc/shibboleth/shibboleth2.xml
+#### 3.1.3 /etc/shibboleth/shibboleth2.xml
 
 This is the main configuration, which controls how the software federates with identity providers.
 
-First, replace $YOUR_HOSTNAME with your hostname, in the entityID attribute near the top of the file:
+First, replace $YOUR_HOSTNAME with your hostname in the entityID attribute near the top of the file:
 
        <ApplicationDefaults entityID="https://$YOUR_HOSTNAME/login/shibboleth" REMOTE_USER="eppn persistent-id targeted-id">
 
@@ -92,22 +104,9 @@ Install https://caf-shib2ops.ca/CoreServices/caf_metadata_verify.crt as /etc/shi
 If this is a test/development manchine, please use the Test Federation by replacing the URI in the MetadataProvider with "https://caf-shib2ops.ca/CoreServices/testbed/caf_test_fed_unsigned.xml".
 
 
-###3.2 Apache
+### 3.2 Apache
 
-####3.2.1 Quote the [Shibboleth wiki entry on service provider installation](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRPMInstall):
-
-- UseCanonicalName On
-- Ensure that the ServerName directive is properly set, and that Apache is being started with SSL enabled.
-
-Make sure installing the software enabled both the module shib2 and the support daemon shibd.
-
-Typically this means that there is a symlink /etc/apache2/mods-enabled/shib2.load that points to /etc/apache2/mods-available/shib2.load and that this report works:
-
-`service shibd status`
-
-	[ ok ] shibd is running.
-
-####3.2.2 /etc/apache2/sites-enabled/{your-ssl-enabled-config-file}
+#### 3.2.1 /etc/apache2/sites-enabled/{your-ssl-enabled-config-file}
 
 Your EntityID is something like https://hostname/login/shibboleth, but the actual URL to pick up the login process again in HUBzero CMS terms is more complicated, so we rewrite it. I recommend putting this statement as high as possible in the config (after RewriteEngine on) so that the “L“ast last triggers and you can be assured the URL is not subsequently rewritten by anything else you’re doing.
 
@@ -138,4 +137,4 @@ Restart the shibd and apache2 services when satisfied with this configuration.
 
 ## 4. HUBzero CMS Plugin
 
-Log in to /administrator, choose Extensions and then Plugin Manager, and locate the Shibboleth plugin in the Authentication category and then enable it.
+Log in to /administrator, choose "Extensions" and then "Plug-in Manager", and locate the Shibboleth plugin in the Authentication category and then enable it.
