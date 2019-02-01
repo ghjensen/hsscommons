@@ -3,7 +3,7 @@ This plugin provide the functionality to cleanup the backend shibboleth session 
 
 ###Installation
 
-1. Upload the entire content of this extension to the /yourhub/app/plugins/cron/shibboleth/ directory.
+1. Upload the entire content of this extension to the /var/www/{yourhub}/app/plugins/cron/shibboleth/ directory.
 2. Run the "muse" command to add it:
 
 	muse extension
@@ -25,5 +25,5 @@ This plugin provide the functionality to cleanup the backend shibboleth session 
 3. Click the "+" icon at the top right corner to create a new cron job.
 4. Set up the Title. 
 5. From the Event list, select "Remove Shibboleth Sessions" underneath "Cron - Shibboleth".
-6. Set up the Frenquency for the Recurrence.
+6. Set up the Frequency for the Recurrence.
 7. Set the State to "Published" to enable this job.
