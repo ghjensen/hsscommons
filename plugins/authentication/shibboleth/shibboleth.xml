@@ -36,12 +36,12 @@ HUBzero is a registered trademark of Purdue University.
 	<authorEmail>support@hubzero.org</authorEmail>
 	<license>http://opensource.org/licenses/MIT MIT</license>
 	<version>1.5</version>
-	<description>Handles user authentication with Shibboleth/InCommon</description>
+	<description>Handles user authentication with Shibboleth/CAF</description>
 	<files>
 		<filename plugin="shibboleth">shibboleth.php</filename>
 	</files>
 	<config>
-		<fields name="params" addfieldpath="/core/plugins/authentication/shibboleth/fields">
+		<fields name="params">
 			<fieldset name="basic">
 				<field name="site_login" type="radio" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_SITELOGIN_LABEL" default="1" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_SITELOGIN_DESC">
 					<option value="0">JNo</option>
