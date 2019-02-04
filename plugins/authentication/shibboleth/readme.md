@@ -1,6 +1,6 @@
 ## 1. Introduction
 
-This is a modified version of HUBzero documentation for the [Shibboleth plugin for InCommon](https://help.hubzero.org/documentation/220/installation/debian/addons/incommon), to allow it to be used with Canadian Access Federation (CAF).
+This is a modified version of the HUBzero documentation for the [Shibboleth plugin for InCommon](https://help.hubzero.org/documentation/220/installation/debian/addons/incommon), to allow it to be used with Canadian Access Federation (CAF).
 
 This plugin provides the code necessary to allow your hub to accept credentials using the Shibboleth system with CAF.
 
@@ -68,7 +68,7 @@ First, replace $YOUR_HOSTNAME with your hostname in the entityID attribute near 
 
        <ApplicationDefaults entityID="https://$YOUR_HOSTNAME/login/shibboleth" REMOTE_USER="eppn persistent-id targeted-id">
 
-In the block, delete or comment-out any SSO or SessionInitiator blocks that shipped, and add the two listed below if this is a production machine. This tells the software to redirect for a given authentication request to the CAF Central Discovery Service.
+In the block, delete or comment out any SSO or SessionInitiator blocks that shipped, and add the two listed below if this is a production machine. This tells the software to redirect for a given authentication request to the CAF Central Discovery Service.
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="true" cookieProps="https">
