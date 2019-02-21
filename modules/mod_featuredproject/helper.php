@@ -31,6 +31,12 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: A new module for featured project.
+ */
+
 namespace Modules\Featuredproject;
 
 use Hubzero\Module\Module;

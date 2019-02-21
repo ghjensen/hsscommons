@@ -30,6 +30,12 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: A new module for featured project.
+ */
+
 namespace Modules\Featuredproject;
 
 require_once __DIR__ . DS . 'helper.php';

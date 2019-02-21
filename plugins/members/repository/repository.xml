@@ -29,9 +29,17 @@ THE SOFTWARE.
 HUBzero is a registered trademark of Purdue University.
 -->
 
+<!--
+*
+* Modified by CANARIE Inc. for the HSSCommons project.
+*
+* Summary of changes: a new plugin for member repository. 
+*
+-->
+
 <extension version="1.7" type="plugin" group="members">
 	<name>plg_members_repository</name>
-	<author>HUBzero</author>
+	<author>HUBzero modified by CANARIE Inc.</author>
 	<copyright>Copyright 2005-2015 HUBzero Foundation, LLC.</copyright>
 	<license>http://opensource.org/licenses/MIT MIT</license>
 	<description>PLG_MEMBERS_REPOSITORY_DESCRIPTION</description>

@@ -30,6 +30,12 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
+
 namespace Components\Projects\Site;
 
 require_once(__DIR__ . DS . 'controllers' . DS . 'base.php');

@@ -29,9 +29,17 @@ THE SOFTWARE.
 HUBzero is a registered trademark of Purdue University.
 -->
 
+<!--
+*
+* Modified by CANARIE Inc. for the HSSCommons project.
+*
+* Summary of changes: A new module for featured project. 
+*
+-->
+
 <extension version="1.0.0" client="site" type="module">
 	<name>mod_featuredproject</name>
-	<author>HUBzero</author>
+	<author>HUBzero modified by CANARIE Inc.</author>
 	<copyright>Copyright 2005-2015 HUBzero Foundation, LLC.</copyright>
 	<license>http://opensource.org/licenses/MIT MIT</license>
 	<description>MOD_FEATUREDPROJECT_XML_DESCRIPTION</description>

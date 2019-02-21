@@ -31,6 +31,14 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+*
+* Modified by CANARIE Inc. for the HSSCommons project.
+*
+* Summary of changes: Customized for Canadian Access Federation (CAF).
+*
+*/
+
 // No direct access
 defined('_HZEXEC_') or die();
 

@@ -28,6 +28,14 @@ THE SOFTWARE.
 HUBzero is a registered trademark of Purdue University.
 -->
 
+<!--
+*
+* Modified by CANARIE Inc. for the HSSCommons project.
+*
+* Summary of changes: Minor customization. 
+*
+-->
+
 <extension version="1.7" type="plugin" group="authentication">
 	<name>Authentication - Shibboleth</name>
 	<author>HUBzero</author>

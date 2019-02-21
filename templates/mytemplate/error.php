@@ -30,6 +30,12 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
+
 // Get browser info to set some classes
 $browser = new \Hubzero\Browser\Detector();
 $cls = array(

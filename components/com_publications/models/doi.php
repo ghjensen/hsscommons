@@ -30,6 +30,12 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
+
 namespace Components\Publications\Models;
 
 use Hubzero\Base\Obj;

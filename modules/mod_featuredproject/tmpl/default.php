@@ -30,6 +30,12 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: A new module for featured project.
+ */
+
 // no direct access
 defined('_HZEXEC_') or die();
 
