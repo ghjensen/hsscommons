@@ -1,10 +1,10 @@
 ## 1. Introduction
 
-This is a modified version of HUBzero document for [Shibboleth plugin for InCommon](https://help.hubzero.org/documentation/220/installation/debian/addons/incommon) so that it can be used with Canadian Access Federation (CAF).
+This is a modified version of the HUBzero documentation for the [Shibboleth plugin for InCommon](https://help.hubzero.org/documentation/220/installation/debian/addons/incommon), to allow it to be used with Canadian Access Federation (CAF).
 
 This plugin provides the code necessary to allow your hub to accept credentials using the Shibboleth system with CAF.
 
-You will need to get your hub added to CAF XML manifest as a service provider.
+You will need to get your hub added to the CAF XML manifest as a service provider.
 
 
 ## 2. Installation
@@ -12,7 +12,7 @@ You will need to get your hub added to CAF XML manifest as a service provider.
 Debian
 
 `apt-get install -y libapache2-mod-shib2`
- 
+
 Redhat Enterprise Linux & other distributions
 
 See [Shibboleth wiki entry on service provider installation](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRPMInstall) for information on how to add the Shibboleth software to your list of repositories so that it can be installed and upgraded through yum, or, failing that, how to install from SRPMS.
@@ -26,7 +26,7 @@ See [Shibboleth wiki entry on service provider installation](https://wiki.shibbo
 
 As root, run the script `shib-keygen`, which was installed as part of the package. This will generate a key pair for your service provider to use. No further configuration is required for this; the software will find the keys when the shibd service is restarted.
 
-output
+Output:
 
 	Generating a 2048 bit RSA private key
 	........................................................................................+++
@@ -68,7 +68,7 @@ First, replace $YOUR_HOSTNAME with your hostname in the entityID attribute near 
 
        <ApplicationDefaults entityID="https://$YOUR_HOSTNAME/login/shibboleth" REMOTE_USER="eppn persistent-id targeted-id">
 
-In the block, delete or comment-out any SSO or SessionInitiator blocks that shipped, and add the two listed below if this is a production machine. This tells the software to redirect for a given authentication request to the CAF Central Discovery Service.
+In the block, delete or comment out any SSO or SessionInitiator blocks that shipped, and add the two listed below if this is a production machine. This tells the software to redirect for a given authentication request to the CAF Central Discovery Service.
 
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                   checkAddress="false" handlerSSL="true" cookieProps="https">
@@ -97,7 +97,7 @@ If your plans include membership in CAF, please add the following lines below th
 
 	<MetadataProvider type="XML" uri="http://caf-shib2ops.ca/CoreServices/caf_metadata_signed_sha256.xml" backingFilePath="CAF-metadata.xml" reloadInterval="3600">
             <MetadataFilter type="Signature" certificate="caf_metadata_verify.crt"/>
-	</MetadataProvider> 
+	</MetadataProvider>
 
 Install https://caf-shib2ops.ca/CoreServices/caf_metadata_verify.crt as /etc/shibboleth/caf_metadata_verify.crt so it’s available for this provider.
 
