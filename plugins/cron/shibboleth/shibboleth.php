@@ -33,7 +33,7 @@
 *
 * Modified by CANARIE Inc. for the HSSCommons project.
 *
-* Summary of changes: A new plugin for cron job.
+* Summary of changes: Written by CANARIE Inc. Based on HUBzero's Plugin of Cron type, with implicit permission under original MIT licence.
 *
 */
 

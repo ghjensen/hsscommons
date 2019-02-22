@@ -34,7 +34,7 @@
 /**
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
- * Summary of changes: A new module for featured publication.
+ * Summary of changes: Written by CANARIE Inc. Based on HUBzero's Module of Featuredresource, with implicit permission under original MIT licence.
  */
 
 namespace Modules\Featuredpublication;

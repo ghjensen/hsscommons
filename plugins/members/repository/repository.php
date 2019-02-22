@@ -34,7 +34,7 @@
 *
 * Modified by CANARIE Inc. for the HSSCommons project.
 *
-* Summary of changes: a new plugin for member repository.
+* Summary of changes: Written by CANARIE Inc. Based on HUBzero's Plugin of Member Impact, with implicit permission under original MIT licence.
 *
 */
 
