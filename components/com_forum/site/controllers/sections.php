@@ -228,12 +228,15 @@ class Sections extends SiteController
 		$this->_authorize('section');
 
 		// Load the section
+		// Modified by CANARIE Inc. Beginning
+		// Changed the forum to model
 		$section = Section::all()
 			->whereEquals('alias', Request::getString('section'))
 			->whereEquals('scope', $this->model->get('scope'))
 			->whereEquals('scope_id', $this->model->get('scope_id'))
 			->where('state', '!=', Section::STATE_DELETED)
 			->row();
+		// Modified by CANARIE Inc. End
 
 		// Make the sure the section exist
 		if (!$section->get('id'))

@@ -123,6 +123,9 @@ foreach ($yearlystats as $year=>$amt)
 
 	$tr  = "\t\t".'<tr class="'.$cls.'">'."\n";
 	$tr .= "\t\t\t".'<th class="textual-data">'.$year.'</th>'."\n";
+	//  Modified by CANARIE Inc. Beginning
+	//  Removed two lines of code for affiliate and non-affiliate
+	//  Modified by CANARIE Inc. End
 	$tr .= "\t\t\t".'<td class="numerical-data highlight">'.(intval($amt['affiliate']) + intval($amt['non-affiliate'])).'</td>'."\n";
 	$tr .= "\t\t".'</tr>'."\n";
 
@@ -136,6 +139,9 @@ $html .= "\t".'<caption>'.Lang::txt('COM_CITATIONS_TABLE_METRICS_YEAR').'</capti
 $html .= "\t".'<thead>'."\n";
 $html .= "\t\t".'<tr>'."\n";
 $html .= "\t\t\t".'<th scope="col" class="textual-data">'.Lang::txt('COM_CITATIONS_YEAR').'</th>'."\n";
+//  Modified by CANARIE Inc. Beginning
+//  Removed two lines of code for affiliate and non-affiliate
+//  Modified by CANARIE Inc. End
 $html .= "\t\t\t".'<th scope="col" class="numerical-data">'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
 $html .= "\t\t".'</tr>'."\n";
 $html .= "\t".'</thead>'."\n";
@@ -144,11 +150,17 @@ $html .= implode('',$rows);
 $html .= "\t".'</tbody>'."\n";
 $html .= "\t".'<tfoot>'."\n";
 $html .= "\t\t".'<tr class="summary">'."\n";
+//  Modified by CANARIE Inc. Beginning
+//  Changed the displaying format
 $html .= "\t\t\t".'<th>'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
+//  Modified by CANARIE Inc. End
 $html .= "\t\t\t".'<td class="numerical-data highlight">'.$tot.'</td>'."\n";
 $html .= "\t\t".'</tr>'."\n";
 $html .= "\t".'</tfoot>'."\n";
 $html .= '</table>'."\n";
+//  Modified by CANARIE Inc. Beginning
+//  Removed three lines of code for footnotes
+//  Modified by CANARIE Inc. End
 
 $typestats = $this->typestats;
 $cls = 'even';

@@ -38,7 +38,10 @@
 // No direct access
 defined('_HZEXEC_') or die();
 
+// Modified by CANARIE Inc. Beginning
+// replaced two variables with one
 $numitems = 0;
+// Modified by CANARIE Inc. End
 
 // Did we get any results back?
 if ($this->citations)
@@ -47,7 +50,10 @@ if ($this->citations)
 	include_once(PATH_CORE . DS . 'components' . DS . 'com_citations' . DS . 'helpers' . DS . 'format.php');
 
 	// Set some vars
-        $item = '';
+	// Modified by CANARIE Inc. Beginning
+	// replaced two variables with one
+    $item = '';
+    // Modified by CANARIE Inc. End
 
 	$formatter = new \Components\Citations\Helpers\Format;
 	$formatter->setTemplate($this->format);
@@ -63,7 +69,10 @@ if ($this->citations)
 			$formatted = str_replace('doi:' . $cite->doi, '<a href="' . $cite->url . '" rel="external">' . 'doi:' . $cite->doi . '</a>', $formatted);
 		}
 
+		// Modified by CANARIE Inc. Beginning
+		// replaced "=" with ".="
 		$item .= "\t" . '<li>' . "\n";
+		// Modified by CANARIE Inc. End
 		$item .= $formatted;
 		$item .= "\t\t" . '<p class="details">' . "\n";
 		if ($showLinks)
@@ -80,18 +89,28 @@ if ($this->citations)
 		}
 		$item .= "\t\t" . '</p>' . "\n";
 		$item .= "\t" . '</li>' . "\n";
+		
+		// Modified by CANARIE Inc. Beginning
+		// replaced the code for adding numbers
 		$numitems++;
+		// Modified by CANARIE Inc. End
 	}
 }
 ?>
 <h3 id="citations">
         <?php echo Lang::txt('PLG_PUBLICATION_CITATIONS'); ?>
+        <!--  Modified by CANARIE Inc. Beginning -->
+        <!--  Replaced how the cited number be displayed -->
         (<?php echo $numitems; ?>)
+        <!--  Modified by CANARIE Inc. End -->
 </h3>
 <?php if ($this->citations) { ?>
+		<!--  Modified by CANARIE Inc. Beginning -->
+        <!--  Replaced how the citations results be displayed -->
         <ul class="citations results">
                 <?php echo $item; ?>
         </ul>
+        <!--  Modified by CANARIE Inc. End -->
 <?php } else { ?>
         <p><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_NO_CITATIONS_FOUND'); ?></p>
 <?php } ?>

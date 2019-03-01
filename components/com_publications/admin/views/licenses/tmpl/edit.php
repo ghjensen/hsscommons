@@ -93,7 +93,10 @@ function submitbutton(pressbutton)
 					<input type="text" name="fields[icon]" id="field-icon" value="<?php echo $this->escape($this->row->icon); ?>" />
 					<span class="hint"><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ICON_HINT'); ?></span>
 				</div>
-
+				
+				<!-- Modified by CANARIE Inc. Beginning -->
+				<!-- Removed the input for ordering -->
+				<!-- Modified by CANARIE Inc. End -->
 				<input type="hidden" name="fields[id]" value="<?php echo $this->row->id; ?>" />
 				<input type="hidden" name="option" value="<?php echo $this->option; ?>" />
 				<input type="hidden" name="controller" value="<?php echo $this->controller; ?>" />
@@ -107,11 +110,14 @@ function submitbutton(pressbutton)
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ID'); ?></th>
 						<td><?php echo $this->row->id; ?></td>
 					</tr>
+					<!-- Modified by CANARIE Inc. Beginning -->
+					<!-- Moved the COM_PUBLICATIONS_FIELD_DEFAULT inside the condition -->
 				<?php if ($this->row->id) { ?>
 					<tr>
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_DEFAULT'); ?></th>
 						<td><?php echo $this->row->main == 1 ? Lang::txt('COM_PUBLICATIONS_LICENSE_YES') : Lang::txt('COM_PUBLICATIONS_LICENSE_NO') ; ?></td>
 					</tr>
+					<!-- Modified by CANARIE Inc. End -->
 					<tr>
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ORDERING'); ?></th>
 						<td><?php echo $this->row->ordering; ?></td>

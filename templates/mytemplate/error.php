@@ -73,7 +73,10 @@ Lang::load('tpl_' . $this->template, __DIR__);
 		<div id="errorbox">
 			<header id="masthead">
 				<h1>
+					<!-- Modified by CANARIE Inc. Beginning -->
+					<!-- Link to home page otherwise it causes a 404 error -->
 					<a href="/" title="<?php echo Config::get('sitename'); ?>">
+					<!-- Modified by CANARIE Inc. End -->
 						<span><?php echo Config::get('sitename'); ?></span>
 					</a>
 				</h1>

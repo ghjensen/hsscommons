@@ -43,10 +43,11 @@
 defined('_HZEXEC_') or die();
 
 use Hubzero\Utility\Cookie;
-
+//  Modified by CANARIE Inc. Beginning
 /**
  * Authentication Plugin class for Shibboleth/CAF
  */
+//  Modified by CANARIE Inc. End
 class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 {
 	/**
@@ -118,7 +119,9 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		// oops ... hopefully not reachable
 		if (!($idp = $dbh->loadResult()) || !($label = self::getInstitutionByEntityId($idp, 'label')))
 		{
+			//  Modified by CANARIE Inc. Beginning
 			return 'CAF';
+			//  Modified by CANARIE Inc. End
 		}
 
 		return $label;
@@ -202,7 +205,9 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 	 * plugin name is used (EX: "link your Shibboleth account").
 	 *
 	 * Neither is appropriate here because we want to vary the text based on the
+	 * //  Modified by CANARIE Inc. Beginning
 	 * ID provider used. I don't think the average user knows what CAF or
+	 * //  Modified by CANARIE Inc. Beginning
 	 * Shibboleth mean in this context.
 	 *
 	 * @return  string
@@ -215,7 +220,9 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			return $rv;
 		}
 		// Probably only possible if the user abruptly deletes their cookies
+		//  Modified by CANARIE Inc. Beginning
 		return 'CAF';
+		//  Modified by CANARIE Inc. End
 	}
 
 	/**
@@ -279,13 +286,15 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			return '<span />';
 		}
-                
+		// Modified by CANARIE Inc. Beginning
+		// Replaced all the other code with this function so the Shibboloeth Discovery will depend on the configuration in shibboleth2.xml
 		// Attach CAF style and login
 		\Hubzero\Document\Assets::addPluginstylesheet('authentication', 'shibboleth', 'canariecaf.css');
 		$login_provider_html = '<a class="canariecaf account canariecaf-color" href="' . Route::url('login/shibboleth') . '">';
 		$login_provider_html .= '<div class="signin">Sign in with CAF</div>';
 		$login_provider_html .= '</a>';
 		return $login_provider_html;
+		// Modified by CANARIE Inc. End
 	}
 
 	/**

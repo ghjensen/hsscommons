@@ -298,6 +298,9 @@ $sortdir = $this->filters['sort_Dir'] == 'DESC' ? 'ASC' : 'DESC';
 					<?php echo Lang::txt('COM_ANSWERS_GET_STARTED_HELP', Route::url('index.php?option=com_help&component=answers&page=index')); ?>
 				</p>
 			</div><!-- / .container -->
+			<!--  Modified by CANARIE Inc. Beginning -->
+			<!--  Removed points related content -->
+			<!--  Modified by CANARIE Inc. End -->
 		</aside><!-- / .aside -->
 	</div><!-- / .section-inner -->
 </section><!-- / .main section -->

@@ -170,7 +170,10 @@ if (!$this->line->hasImage())
 		{
 			$content = $this->line->get('abstract');
 		}
+		// Modified by CANARIE Inc. Beginning
+		// Changed to always check description
 		if ($this->line->get('description'))
+		// Modified by CANARIE Inc. End
 		{
 			$content = $this->line->get('description');
 		}

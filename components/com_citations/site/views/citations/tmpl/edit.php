@@ -462,6 +462,9 @@ $pid = Request::getInt('publication', 0);
 									echo ' <option value=""';
 									echo ($this->assocs[$i]->tbl == '') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_SELECT').'</option>'."\n";
+									//  Modified by CANARIE Inc. Beginning
+									//  Removed three lines of code for option of resource
+									//  Modified by CANARIE Inc. End
 									echo ' <option value="publication"';
 									echo ($this->assocs[$i]->tbl == 'publication') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_PUBLICATION').'</option>'."\n";
@@ -473,6 +476,9 @@ $pid = Request::getInt('publication', 0);
 									echo ' <option value=""';
 									echo ($this->assocs[$i]->type == '') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_SELECT').'</option>'."\n";
+									//  Modified by CANARIE Inc. Beginning
+									//  Removed two lines of code for option of references
+									//  Modified by CANARIE Inc. End
 									echo ' <option value="referencedby"';
 									echo ($this->assocs[$i]->type == 'referencedby') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_CONTEXT_REFERENCEDBY').'</option>'."\n";
@@ -485,17 +491,24 @@ $pid = Request::getInt('publication', 0);
 				</div>
 			</fieldset><div class="clear"></div>
 		<?php } ?>
+		
+		<!--  Modified by CANARIE Inc. Beginning -->
+		<!--  Removed 10 lines of code from fieldset to the label of fundedby -->
+		<!--  Modified by CANARIE Inc. End -->
 
-			<input type="hidden" name="fields[affiliated]" id="affiliated" value="0" />
-			<input type="hidden" name="fields[uid]" value="<?php echo $this->row->uid; ?>" />
-			<input type="hidden" name="fields[created]" value="<?php echo $this->escape($this->row->created); ?>" />
-			<input type="hidden" name="fields[scope]" value="<?php echo $this->escape($this->row->scope); ?>" />
-			<input type="hidden" name="fields[scope_id]" value="<?php echo $this->escape($this->row->scope_id); ?>" />
-			<input type="hidden" name="fields[published]" value="<?php echo ($this->row->id ? $this->escape($this->row->published) : 1); ?>" />
-			<input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-			<input type="hidden" name="task" value="save" />
+		<input type="hidden" name="fields[affiliated]" id="affiliated" value="0" />
+		<input type="hidden" name="fields[uid]" value="<?php echo $this->row->uid; ?>" />
+		<input type="hidden" name="fields[created]" value="<?php echo $this->escape($this->row->created); ?>" />
+		<input type="hidden" name="fields[scope]" value="<?php echo $this->escape($this->row->scope); ?>" />
+		<input type="hidden" name="fields[scope_id]" value="<?php echo $this->escape($this->row->scope_id); ?>" />
+		<input type="hidden" name="fields[published]" value="<?php echo ($this->row->id ? $this->escape($this->row->published) : 1); ?>" />
+		<input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
+		<input type="hidden" name="task" value="save" />
 
-			<?php echo Html::input('token'); ?>
+		<?php echo Html::input('token'); ?>
+		<!--  Modified by CANARIE Inc. Beginning -->
+		<!--  Removed one line for the fieldset closing -->
+		<!--  Modified by CANARIE Inc. End -->
 		<div class="clear"></div>
 
 		<p class="submit">

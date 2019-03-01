@@ -65,6 +65,9 @@ $this->js()
 		<?php } else { ?>
 			<p><?php echo Lang::txt('PLG_PUBLICATION_RECOMMENDATIONS_NO_RESULTS_FOUND'); ?></p>
 		<?php } ?>
+		<!--  Modified by CANARIE Inc. Beginning -->
+		<!--  Changed url -->
 		<p id="credits"><a href="<?php echo Request::base(true); ?>/aboutus/hubzero#recommendations"><?php echo Lang::txt('PLG_PUBLICATION_RECOMMENDATIONS_POWERED_BY'); ?></a></p>
+		<!--  Modified by CANARIE Inc. End -->
 	</div>
 </div>

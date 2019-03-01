@@ -39,8 +39,11 @@ defined('_HZEXEC_') or die();
 ?>
 
 <div id="pubintro">
+	<!--  Modified by CANARIE Inc. Beginning -->
+	<!--  Removed the "Learn More" link -->
 	<h3><?php echo Lang::txt('PLG_PROJECTS_PUBLICATIONS_PUB_HOW_IT_WORKS'); ?></h3>
-
+	<!--  Modified by CANARIE Inc. End -->
+	
 	<div class="grid">
 		<div class="col span4 step-one">
 			<h4><span class="num">1</span> <?php echo Lang::txt('PLG_PROJECTS_PUBLICATIONS_PUB_INTRO_STEP_ONE'); ?></h4>

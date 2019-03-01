@@ -100,7 +100,10 @@ if ($label == 'none') {
 				</fieldset>
 			</div><!-- /.container .data-entry -->
 			<div class="container">
-
+				<!--  Modified by CANARIE Inc. Beginning -->
+				<!--  Removed the class of "entries-filters" -->
+				<!--  Modified by CANARIE Inc. End -->
+			
 				<?php if (count($this->citations) > 0) : ?>
 					<?php
 

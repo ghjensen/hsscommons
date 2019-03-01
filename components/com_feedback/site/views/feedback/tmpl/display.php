@@ -84,8 +84,14 @@ $this->css('introduction.css', 'system')
 					</div>
 				</div><!-- / .col span6 omega -->
 			</div><!-- / .grid -->
+			<!--  Modified by CANARIE Inc. Beginning -->
+			<!--  changed from "xpoll" to "poll" -->
 			<?php if ($this->wishlist || $this->poll) { ?>
+			<!--  Modified by CANARIE Inc. End -->
 				<div class="grid">
+					<!--  Modified by CANARIE Inc. Beginning -->
+					<!--  Removed the whole div for wishlist -->
+					<!--  Modified by CANARIE Inc. End -->
 					<div class="col span6 omega">
 					<?php if ($this->poll) { ?>
 						<div class="poll">

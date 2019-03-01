@@ -20,7 +20,10 @@
 */
 
 	.home #masthead {
+		/* Modified by CANARIE Inc. Beginning */
+		/* Change the color */
 		color: #666;
+		/* Modified by CANARIE Inc. End */
 	}
 	.home #masthead h1 a {
 		color: #fff;
@@ -35,6 +38,8 @@
 	.home #sub-masthead {
 		display: none;
 	}
+	/* Modified by CANARIE Inc. Beginning */
+	/* commoent out the code */
 	/*
 	.dark #masthead.fixed #account>ul>li>a,
 	.home #account>ul>li>a {
@@ -47,13 +52,17 @@
 	.home.dark #masthead.fixed h1 a {
 		color: #fff;
 	}*/
+	/* Modified by CANARIE Inc. End */
 
 	.home #nav ul.menu>li>a {
 		color: #666;
 	}
 	.home #nav ul.menu>li:hover>a,
 	.home #nav ul.menu>li:focus>a {
+		/* Modified by CANARIE Inc. Beginning */
+		/* change the color */
 		color: #3289c7;
+		/* Modified by CANARIE Inc. End */
 	}
 
 	.home .fixed #nav ul.menu>li>a {
@@ -64,14 +73,20 @@
 	}
 	.home .fixed #nav ul.menu>li:hover>a,
 	.home .fixed #nav ul.menu>li:focus>a {
+		/* Modified by CANARIE Inc. Beginning */
+		/* change the color */
 		color: #3289c7;
+		/* Modified by CANARIE Inc. End */
 	}
 	.home .fixed #account>ul>li>a {
 		color: #666;
 	}
 	.home .fixed #account>ul>li>a:hover,
 	.home .fixed #account>ul>li>a:focus {
+		/* Modified by CANARIE Inc. Beginning */
+		/* change the color */
 		color: #3289c7;
+		/* Modified by CANARIE Inc. End */
 	}
 
 	.com_content .contentpaneopen {
@@ -102,7 +117,10 @@
 		margin: 90px auto;
 		padding: 30px 0;
 		text-align: left;
+		/* Modified by CANARIE Inc. Beginning */
+		/* don't draw the line */
 		//border-top: 1px solid rgba(255, 255, 255, 0.2);
+		/* Modified by CANARIE Inc. End */
 	}
 	#welcome h2 {
 		margin: 0;
@@ -112,6 +130,8 @@
 		letter-spacing: 0.075em;
 		position: relative;
 	}
+	/* Modified by CANARIE Inc. Beginning */
+	/* remove the unwanted formatting */
 	/*#welcome h2:after {
 		content: "";
 		position: absolute;
@@ -123,6 +143,7 @@
 		left: 0;
 		top: -30px;
 	}*/
+	/* Modified by CANARIE Inc. End */
 	#welcome p {
 		margin: 0;
 		padding: 15px 0 0 0;
@@ -765,7 +786,10 @@
 	.dark #masthead.fixed #nav ul.menu>li>a,
 	.home #account>ul>li>a,
 	.home #nav ul.menu>li>a {
+		/* Modified by CANARIE Inc. Beginning */
+		/* change the color */
 		color: #666;
+		/* Modified by CANARIE Inc. End */
 	}
 	.dark #masthead.fixed #nav ul.menu>li:hover>a,
 	.dark #masthead.fixed #nav ul.menu>li:focus>a,
@@ -778,7 +802,10 @@
 	.home #nav ul.menu>li:focus>a,
 	.home #nav ul.menu>li>a:hover,
 	.home #nav ul.menu>li>a:focus {
+		/* Modified by CANARIE Inc. Beginning */
+		/* change the color */
 		color: #3289c7;
+		/* Modified by CANARIE Inc. End */
 	}
 	#features .box:after {
 		left: 30px;

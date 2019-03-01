@@ -300,8 +300,10 @@ class Categories extends AdminController
 			$row->set('state', $row->get('state') == 1 ? 0 : 1);
 
 			// Save
-			// if (!$row->store())
+			// Modified by CANARIE Inc. Beginning
+			// replaced "if (!$row->store())"
 			if (!$row->save())
+			// Modified by CANARIE Inc. End
 			{
 				Notify::error($row->getError());
 				continue;
@@ -379,8 +381,10 @@ class Categories extends AdminController
 			// Remove the profile
 			$row = Category::oneOrFail($id);
 
-			//if (!$row->delete())
+			// Modified by CANARIE Inc. Beginning
+			// replaced "if (!$row->delete())"
 			if (!$row->destroy())
+			// Modified by CANARIE Inc. End
 			{
 				Notify::error($row->getError());
 				continue;

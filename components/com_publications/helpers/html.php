@@ -355,17 +355,23 @@ class Html
 		$formatter->setTemplate($template);
 
 		$html  = '<p>' . Lang::txt('COM_PUBLICATIONS_CITATION_INSTRUCTIONS') . '</p>' . "\n";
-                $html .= '<ul class="citations results">' . "\n";
-                if ($citations)
-                {
-                        $html .= "\t" . '<li>' . "\n";
-                        $html .= $citations;
-                        $html .= "\t" . '</li>' . "\n";
-                }
+		// Modified by CANARIE Inc. Beginning
+		// Reorganized the displaying of citations results
+        $html .= '<ul class="citations results">' . "\n";
+        if ($citations)
+        {
+        	$html .= "\t" . '<li>' . "\n";
+        	$html .= $citations;
+            $html .= "\t" . '</li>' . "\n";
+        }
+        // Modified by CANARIE Inc. End
 		if ($cite)
 		{
+			// Modified by CANARIE Inc. Beginning
+			// Moved the citation results out
 			$html .= "\t" . '<li>' . "\n";
-
+			// Modified by CANARIE Inc. End
+			
 			$formatted = $formatter->formatCitation($cite, false, true, $cconfig);
 
 			// The following line was meant to remove quote marks from around the title
@@ -394,9 +400,15 @@ class Html
 				$html .= "\t\t" . '</p>'."\n";
 			}
 			$html .= "\t" . '</li>' . "\n";
+			// Modified by CANARIE Inc. Beginning
+			// Moved the close ul line out
+			// Modified by CANARIE Inc. End
 		}
 
+		// Modified by CANARIE Inc. Beginning
+		// Moved the close ul line out
 		$html .= '</ul>' . "\n";
+		// Modified by CANARIE Inc. End
 		return $html;
 	}
 

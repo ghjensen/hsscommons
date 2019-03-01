@@ -374,7 +374,10 @@ class Licenses extends AdminController
 
 		if ($success)
 		{
+			// Modified by CANARIE Inc. Beginning
+			// removed the "$i" variable which is not existed
 			Notify::success(Lang::txt('COM_PUBLICATIONS_ITEMS_REMOVED'));
+			// Modified by CANARIE Inc. End
 		}
 
 		// Redirect

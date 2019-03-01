@@ -51,11 +51,14 @@ if ($canDo->get('core.edit'))
 }
 Toolbar::cancel();
 
+// Modified by CANARIE Inc. Beginning
+// Changed the type list
 $dcTypes = array(
 	'Collection' , 'Dataset' , 'Event' , 'Image' ,
 	'InteractiveResource' , 'Audiovisual' , 'PhysicalObject' ,
 	'Service' , 'Software' , 'Sound' , 'Text'
 );
+// Modified by CANARIE Inc. End
 
 $params = $this->row->params;
 
@@ -137,10 +140,16 @@ function submitbutton(pressbutton)
 					<div class="input-wrap" data-hint="<?php echo Lang::txt('COM_PUBLICATIONS_FIELD_CONTRIBUTABLE_HINT'); ?>">
 						<span class="hint"><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_CONTRIBUTABLE_HINT'); ?></span>
 
+						<!-- Modified by CANARIE Inc. Beginning -->
+						<!-- Changed how to query the Contributable value -->
 						<input class="option" name="prop[contributable]" id="field-contributable1" type="radio" value="1" <?php echo $this->row->isContributable() ? 'checked="checked"' : ''; ?> />
+						<!-- Modified by CANARIE Inc. End -->
 						<label for="field-contributable1"><?php echo Lang::txt('JYES'); ?></label>
 						<br />
+						<!-- Modified by CANARIE Inc. Beginning -->
+						<!-- Changed how to query the Contributable value -->
 						<input class="option" name="prop[contributable]" id="field-contributable0" type="radio" value="0" <?php echo !($this->row->isContributable()) ? 'checked="checked"' : ''; ?> />
+						<!-- Modified by CANARIE Inc. End -->
 						<label for="field-contributable0"><?php echo Lang::txt('JNO'); ?></label>
 					</div>
 				</fieldset>

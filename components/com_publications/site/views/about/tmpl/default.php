@@ -217,7 +217,10 @@ $schema = $metaElements->getSchema();
 		{
 			$cite->version = $this->publication->version_label;
 		}
+		// Modified by CANARIE Inc. Beginning
+		// Added citations
 		$citations=$this->publication->metadata;
+		// Modified by CANARIE Inc. End
 		if ($this->publication->params->get('show_citation') == 2)
 		{
 			$citations = '';

@@ -202,6 +202,9 @@ Document::setTitle(Lang::txt('COM_KB'));
 					</p>
 				</div><!-- / .container -->
 			<?php } ?>
+			<!--  Modified by CANARIE Inc. Beginning -->
+			<!--  Removed the whole div for wishlist -->
+			<!--  Modified by CANARIE Inc. End -->
 			<?php if (Component::isEnabled('com_support')) { ?>
 				<div class="container">
 					<h3><?php echo Lang::txt('COM_KB_TROUBLE_REPORT'); ?></h3>
