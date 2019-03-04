@@ -31,9 +31,11 @@
  */
 
 /**
+ *
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
- * Summary of changes: A new module for featured project.
+ * Summary of changes: Written by CANARIE Inc. Based on HUBzero's Module of Featuredresource, with implicit permission under original MIT licence.
+ *
  */
 
 // no direct access

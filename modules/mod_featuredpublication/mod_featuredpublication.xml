@@ -52,11 +52,11 @@ HUBzero is a registered trademark of Purdue University.
 		<filename>tmpl/default.php</filename>
 	</files>
 
-        <languages>  
-                <!-- Any language files included with the module -->  
-                <language tag="en-GB">language/en-GB/en-GB.mod_featuredpublication.ini</language>  
-                <language tag="en-GB">language/en-GB/en-GB.mod_featuredpublication.sys.ini</language>  
-        </languages> 
+	<languages>  
+    	<!-- Any language files included with the module -->  
+        <language tag="en-GB">language/en-GB/en-GB.mod_featuredpublication.ini</language>  
+        <language tag="en-GB">language/en-GB/en-GB.mod_featuredpublication.sys.ini</language>  
+	</languages> 
 
 	<config>
 		<fields name="params">
