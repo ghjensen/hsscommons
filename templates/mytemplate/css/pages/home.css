@@ -9,6 +9,7 @@
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
  * Summary of changes: Minor customization.
+ *
  */
 
 /*
@@ -110,27 +111,27 @@
 	}
 
 /* Welcome message */
+/* Modified by CANARIE Inc. Beginning */
 	#welcome {
 		max-width: 27em;
 		color: #fff;
 		position: relative;
 		margin: 90px auto;
 		padding: 30px 0;
-		text-align: left;
-		/* Modified by CANARIE Inc. Beginning */
-		/* don't draw the line */
+		text-align: center;
+		font-size: 20px;
+		// don't draw the line
 		//border-top: 1px solid rgba(255, 255, 255, 0.2);
-		/* Modified by CANARIE Inc. End */
 	}
 	#welcome h2 {
 		margin: 0;
 		padding: 0;
 		color: #fff;
-		font-weight: 300;
+		font-weight: 500;
+		font-size: 30px;
 		letter-spacing: 0.075em;
 		position: relative;
 	}
-	/* Modified by CANARIE Inc. Beginning */
 	/* remove the unwanted formatting */
 	/*#welcome h2:after {
 		content: "";
@@ -172,7 +173,7 @@
 	}
 	#features h3,
 	#features h4 {
-		font-size: 1em;
+		font-size: 1.5em;
 		line-height: 1;
 		padding: 0;
 		margin: 0;
@@ -569,6 +570,7 @@
 /* Events section */
 	.events-section {
 		background: #f9f9f9;
+		font-size: 1.5em;
 	}
 
 	.events-section table.latest_events_tbl,
@@ -584,7 +586,7 @@
 	.events-section .mod_events_calendar caption {
 		position: relative;
 		border-bottom: 1px dashed #dadada;
-		font-size: 1.6em;
+		font-size: 2em;
 		line-height: 1;
 		padding: 0 0 0.8em 0;
 		margin: 0;

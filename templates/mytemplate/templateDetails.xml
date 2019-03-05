@@ -18,6 +18,12 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 
+<!--
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+-->
+
 <extension type="template" version="2.5">
 	<name>mytemplate</name>
 	<author>HUBzero</author>

@@ -1,3 +1,10 @@
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ *
+ */
+ 
 .hide-text {
   font: 0/0 a;
   color: transparent;
@@ -1512,15 +1519,17 @@ textarea {
 html {
   font-family: sans-serif;
 }
+// Modified by CANARIE Inc. Beginning
 body {
   font-family: 'OpenSans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 0.8em;
+  font-size: 1em;
   line-height: 1.6em;
   color: #666;
   background: #e6e6e6;
   text-rendering: optimizeLegibility;
 }
+// Modified by CANARIE Inc. End
 a,
 a:active,
 a:visited {
@@ -2314,13 +2323,15 @@ header.content-header ul li,
     right: 60px;
   }
 }
+// Modified by CANARIE Inc. Beginning
 #footer {
   padding: 0;
   color: #aaa;
-  font-size: 0.9em;
+  font-size: 1em;
   background: #ddd;
   font-family: 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+// Modified by CANARIE Inc. End
 #footer h2 {
   display: none;
 }

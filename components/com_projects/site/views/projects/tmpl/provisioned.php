@@ -32,6 +32,7 @@
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
  * Summary of changes: Minor customization.
+ *
  */
 
 // No direct access
