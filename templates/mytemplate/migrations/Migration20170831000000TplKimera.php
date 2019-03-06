@@ -6,16 +6,16 @@ use Hubzero\Content\Migration\Base;
 defined('_HZEXEC_') or die();
 
 /**
- * Migration script for adding entry for Template - Mytemplate plugin
+ * Migration script for adding entry for Template - Kimera plugin
  **/
-class Migration20170831000000TplMytemplate extends Base
+class Migration20170831000000TplKimera extends Base
 {
 	/**
 	 * Up
 	 **/
 	public function up()
 	{
-		$this->addTemplateEntry('mytemplate', 'mytemplate', 0, 1, 1, null, 1);
+		$this->addTemplateEntry('kimera', 'kimera', 0, 1, 1, null, 1);
 	}
 
 	/**
@@ -23,6 +23,6 @@ class Migration20170831000000TplMytemplate extends Base
 	 **/
 	public function down()
 	{
-		$this->deleteTemplateEntry('mytemplate', 0);
+		$this->deleteTemplateEntry('kimera', 0);
 	}
 }

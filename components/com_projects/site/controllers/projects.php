@@ -30,12 +30,6 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
-/**
- * Modified by CANARIE Inc. for the HSSCommons project.
- *
- * Summary of changes: Added a condtion check to avoid null error
- */
-
 namespace Components\Projects\Site\Controllers;
 
 
@@ -812,14 +806,7 @@ class Projects extends Base
 		{
 			$this->view->setLayout('provisioned');
 			$this->view->model = $this->model;
-			
-			// Modified by CANARIE Inc. Beginning
-			// Added a condtion check to avoid null error
-        	if (!isset($this->model->_tblOwner))
-            {
-	        	$this->model->member();
-            }
-			// Modified by CANARIE Inc. Beginning
+
 			$this->view->team  = $this->model->_tblOwner->getOwnerNames($this->model->get('alias'));
 
 			// Output HTML

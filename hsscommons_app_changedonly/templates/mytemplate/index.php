@@ -105,7 +105,7 @@ $this->setTitle(Config::get('sitename') . ' - ' . $this->getTitle());
               <h1>
                 <a href="<?php echo Request::root(); ?>" title="<?php echo Config::get('sitename'); ?>">
                 	<!--  Modified by CANARIE Inc. Beginning  -->
-                	<img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/img/logos/color_logo_transparent.png" alt="<?php echo Config::get('sitename'); ?>" width="151" height="45"/>
+                  	<img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/img/logos/color_logo_transparent.png" alt="<?php echo Config::get('sitename'); ?>" width="151" height="45"/>
                 	<!--  Modified by CANARIE Inc. End  -->
                 </a>
               </h1>

@@ -42,7 +42,7 @@ $cls = array(
 	$this->direction
 );
 
-$this->setTitle(Config::get('sitename') . ' - ' . Lang::txt('TPL_MYTEMPLATE_OFFLINE'));
+$this->setTitle(Config::get('sitename') . ' - ' . Lang::txt('TPL_KIMERA_OFFLINE'));
 ?>
 <!DOCTYPE html>
 <html dir="<?php echo $this->direction; ?>" lang="<?php echo $this->language; ?>" class="<?php echo implode(' ', $cls); ?>">
@@ -61,14 +61,14 @@ $this->setTitle(Config::get('sitename') . ' - ' . Lang::txt('TPL_MYTEMPLATE_OFFL
 						<span><?php echo Config::get('sitename'); ?></span>
 					</a>
 				</h1>
-				<p class="tagline"><?php echo Lang::txt('TPL_MYTEMPLATE_TAGLINE'); ?></p>
+				<p class="tagline"><?php echo Lang::txt('TPL_KIMERA_TAGLINE'); ?></p>
 			</header>
 
 			<main id="content" role="main">
 				<div class="inner">
 					<jdoc:include type="message" />
 					<div id="offline-message">
-						<?php if ($msg = Config::get('offline_message', Lang::txt('TPL_MYTEMPLATE_OFFLINE'))) : ?>
+						<?php if ($msg = Config::get('offline_message', Lang::txt('TPL_KIMERA_OFFLINE'))) : ?>
 							<p>
 								<?php echo $msg; ?>
 							</p>
@@ -79,7 +79,7 @@ $this->setTitle(Config::get('sitename') . ' - ' . Lang::txt('TPL_MYTEMPLATE_OFFL
 
 			<footer id="footer">
 				<p class="copyright">
-					<?php echo Lang::txt('TPL_MYTEMPLATE_COPYRIGHT', Request::root(), Config::get('sitename'), date("Y")); ?>
+					<?php echo Lang::txt('TPL_KIMERA_COPYRIGHT', Request::root(), Config::get('sitename'), date("Y")); ?>
 				</p>
 			</footer>
 		</div>
