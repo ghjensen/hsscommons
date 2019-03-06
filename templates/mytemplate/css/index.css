@@ -1519,7 +1519,7 @@ textarea {
 html {
   font-family: sans-serif;
 }
-// Modified by CANARIE Inc. Beginning
+/* Modified by CANARIE Inc. Beginning */
 body {
   font-family: 'OpenSans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -1529,7 +1529,7 @@ body {
   background: #e6e6e6;
   text-rendering: optimizeLegibility;
 }
-// Modified by CANARIE Inc. End
+/* Modified by CANARIE Inc. End */
 a,
 a:active,
 a:visited {
@@ -2323,7 +2323,7 @@ header.content-header ul li,
     right: 60px;
   }
 }
-// Modified by CANARIE Inc. Beginning
+/* Modified by CANARIE Inc. Beginning */
 #footer {
   padding: 0;
   color: #aaa;
@@ -2331,7 +2331,7 @@ header.content-header ul li,
   background: #ddd;
   font-family: 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-// Modified by CANARIE Inc. End
+/* Modified by CANARIE Inc. End */
 #footer h2 {
   display: none;
 }

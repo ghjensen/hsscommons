@@ -28,6 +28,13 @@
  * @license   http://www.gnu.org/licenses/lgpl-3.0.html LGPLv3
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ *
+ */
+
 defined('_HZEXEC_') or die();
 
 Html::behavior('framework', true);
@@ -97,7 +104,9 @@ $this->setTitle(Config::get('sitename') . ' - ' . $this->getTitle());
 
               <h1>
                 <a href="<?php echo Request::root(); ?>" title="<?php echo Config::get('sitename'); ?>">
-                  <img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/img/logos/color_logo_transparent.png" alt="<?php echo Config::get('sitename'); ?>" width="151" height="41"/>
+                	<!--  Modified by CANARIE Inc. Beginning  -->
+                	<img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/img/logos/color_logo_transparent.png" alt="<?php echo Config::get('sitename'); ?>" width="151" height="45"/>
+                	<!--  Modified by CANARIE Inc. End  -->
                 </a>
               </h1>
 

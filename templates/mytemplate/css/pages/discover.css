@@ -134,13 +134,13 @@
 		font-size: 1.2em;
 		letter-spacing: 0.1em;
 	}
-	// Modified by CANARIE Inc. Beginning
+	/* Modified by CANARIE Inc. Beginning */
 	.col h3 a {
 		border: none;
 		color: #565656;
 		font-size: 1.1em;
 	}
-	// Modified by CANARIE Inc. End
+	/* Modified by CANARIE Inc. End */
 
 	#content .grid {
 		padding: 30px;
