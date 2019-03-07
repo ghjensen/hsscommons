@@ -28,6 +28,14 @@
  *
  */
 
+/**
+ *
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Written by CANARIE Inc. Based on HUBzero's Plugin of plg_members_impact, with implicit permission under original MIT licence.
+ *
+ */
+
 // No direct access
 defined('_HZEXEC_') or die();
 
