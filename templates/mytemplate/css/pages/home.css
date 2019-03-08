@@ -171,9 +171,11 @@
 	#features h2 {
 		display: none;
 	}
+	/* Modified by CANARIE Inc. Beginning */
+	/* Changed the font-size */
 	#features h3,
 	#features h4 {
-		font-size: 1.5em;
+		font-size: 1em;
 		line-height: 1;
 		padding: 0;
 		margin: 0;
@@ -183,6 +185,7 @@
 		position: relative;
 		color: inherit;
 	}
+	/* Modified by CANARIE Inc. End */
 
 	#features .col,
 	#features .columns {
@@ -568,11 +571,14 @@
 	}
 
 /* Events section */
+	/* Modified by CANARIE Inc. Beginning */
+	/* Changed the font-size */
 	.events-section {
 		background: #f9f9f9;
-		font-size: 1.5em;
+		font-size: 1em;
 	}
-
+	/* Modified by CANARIE Inc. End */
+	
 	.events-section table.latest_events_tbl,
 	.events-section table.latest_events_tbl td,
 	.events-section table.latest_events_tbl th {
@@ -583,10 +589,12 @@
 	.events-section .mod_events_calendar {
 		position: relative;
 	}
+	/* Modified by CANARIE Inc. Beginning */
+	/* Changed the font-size */
 	.events-section .mod_events_calendar caption {
 		position: relative;
 		border-bottom: 1px dashed #dadada;
-		font-size: 2em;
+		font-size: 1em;
 		line-height: 1;
 		padding: 0 0 0.8em 0;
 		margin: 0;
@@ -594,6 +602,7 @@
 		font-weight: normal;
 		font-family: 'OpenSans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	}
+	/* Modified by CANARIE Inc. End */
 	.events-section .mod_events_calendar caption a {
 		color: #555;
 		border: none;
