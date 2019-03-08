@@ -269,6 +269,7 @@ if ($label == 'none') {
 				</div><!-- /.container -->
 			</div><!-- /.subject -->
 			<div class="aside">
+			
 			<?php if ($batch_download) : ?>
 				<fieldset id="download-batch">
 					<strong><?php echo Lang::txt('COM_CITATIONS_EXPORT_MULTIPLE'); ?></strong>
