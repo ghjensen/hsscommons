@@ -33,7 +33,7 @@
 /**
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
- * Summary of changes: Added a condtion check to avoid null error
+ * Summary of changes: Added a condtional check to avoid null error
  */
 
 namespace Components\Projects\Site\Controllers;
