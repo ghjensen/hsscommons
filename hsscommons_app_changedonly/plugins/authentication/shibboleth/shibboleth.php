@@ -205,9 +205,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 	 * plugin name is used (EX: "link your Shibboleth account").
 	 *
 	 * Neither is appropriate here because we want to vary the text based on the
-	 * //  Modified by CANARIE Inc. Beginning
-	 * ID provider used. I don't think the average user knows what CAF or
-	 * //  Modified by CANARIE Inc. Beginning
+	 * ID provider used. I don't think the average user knows what InCommon or
 	 * Shibboleth mean in this context.
 	 *
 	 * @return  string

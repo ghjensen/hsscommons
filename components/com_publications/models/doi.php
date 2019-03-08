@@ -683,25 +683,25 @@ class Doi extends Obj
 			$xmlfile.= '<version>' . $this->get('version') . '</version>';
 		}
 		// Modified by CANARIE Inc. Beginning
-		// Changed the format for rightlist, and added the subject
+		// Changed the format for rightslist, and added the subject
 		if ($this->get('license'))
 		{
-        	$xmlfile.='<rightsList>';
-            $xmlfile.='     <rights>' . htmlspecialchars($this->get('license')) . '</rights>';
-            $xmlfile.='</rightsList>';
-        }
-        // Add subjects
-        if ($this->get('subject'))
-        {
-        	$xmlfile .='<subjects>';
-            $subjects = explode(",", $this->get('subject'));
-            foreach ($subjects as $subject)
-            {
-            	$xmlfile .='    <subject>' . trim($subject) . '</subject>';
-             }
-             $xmlfile .='</subjects>';
-        }
-        // Modified by CANARIE Inc. End
+        		$xmlfile.='<rightsList>';
+            		$xmlfile.='     <rights>' . htmlspecialchars($this->get('license')) . '</rights>';
+            		$xmlfile.='</rightsList>';
+        	}
+        	// Add subjects
+        	if ($this->get('subject'))
+        	{
+        		$xmlfile .='<subjects>';
+            		$subjects = explode(",", $this->get('subject'));
+            		foreach ($subjects as $subject)
+            		{
+            			$xmlfile .='    <subject>' . trim($subject) . '</subject>';
+             		}
+             		$xmlfile .='</subjects>';
+        	}
+        	// Modified by CANARIE Inc. End
 		$xmlfile .='<descriptions>
 			<description descriptionType="Abstract">';
 		$xmlfile.= stripslashes(htmlspecialchars($this->get('abstract')));
