@@ -140,7 +140,7 @@ class Institutions extends Field
 			}
 			$rv[] = $item;
 		}
-		$rv = array_merge($rv, self::getResearchAndScholarshipIdps($curl));
+		//$rv = array_merge($rv, self::getResearchAndScholarshipIdps($curl));
 		curl_close($curl);
 		return array($mtime, $rv);
 	}

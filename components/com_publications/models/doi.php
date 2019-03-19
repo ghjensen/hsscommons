@@ -34,7 +34,6 @@
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
  * Summary of changes: Minor customization.
- *
  */
 
 namespace Components\Publications\Models;
@@ -786,7 +785,6 @@ class Doi extends Obj
 			CURLOPT_HTTPHEADER      => array('Content-Type: text/plain; charset=UTF-8', 'Content-Length: ' . strlen($postvals))
 		);
 		curl_setopt_array($ch, $options);
-
 		$response = curl_exec($ch);
 		$success = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
@@ -1030,6 +1028,34 @@ class Doi extends Obj
 			$doi = null;
 			return $doi;
 		}
-	}	
+		// Modified by CANARIE Inc. Beginning
+		// Changed the format for rightslist, and added the subject
+		if ($this->get('license'))
+		{
+        		$xmlfile.='<rightsList>';
+            		$xmlfile.='     <rights>' . htmlspecialchars($this->get('license')) . '</rights>';
+            		$xmlfile.='</rightsList>';
+        	}
+        	// Add subjects
+        	if ($this->get('subject'))
+        	{
+        		$xmlfile .='<subjects>';
+            		$subjects = explode(",", $this->get('subject'));
+            		foreach ($subjects as $subject)
+            		{
+            			$xmlfile .='    <subject>' . trim($subject) . '</subject>';
+             		}
+             		$xmlfile .='</subjects>';
+        	}
+        	// Modified by CANARIE Inc. End
+		$xmlfile .='<descriptions>
+			<description descriptionType="Abstract">';
+		$xmlfile.= stripslashes(htmlspecialchars($this->get('abstract')));
+		$xmlfile.= '</description>
+			</descriptions>
+		</resource>';
+
+		return $xmlfile;
+	}
 }
 	
