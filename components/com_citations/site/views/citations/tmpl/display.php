@@ -124,7 +124,6 @@ foreach ($yearlystats as $year=>$amt)
 	$tr  = "\t\t".'<tr class="'.$cls.'">'."\n";
 	//  Modified by CANARIE Inc. Beginning
 	//  Removed two lines of code for affiliate and non-affiliate
-	//  Removed two lines of code for affiliate and non-affiliate
 	//  Modified by CANARIE Inc. End
 	$tr .= "\t\t\t".'<td class="numerical-data highlight">'.(intval($amt['affiliate']) + intval($amt['non-affiliate'])).'</td>'."\n";
 	$tr .= "\t\t".'</tr>'."\n";
@@ -139,17 +138,12 @@ $html .= "\t".'<caption>'.Lang::txt('COM_CITATIONS_TABLE_METRICS_YEAR').'</capti
 $html .= "\t".'<thead>'."\n";
 //  Modified by CANARIE Inc. Beginning
 //  Removed two lines of code for affiliate and non-affiliate
-//  Modified by CANARIE Inc. Beginning
-//  Removed two lines of code for affiliate and non-affiliate
 //  Modified by CANARIE Inc. End
 $html .= "\t\t\t".'<th scope="col" class="numerical-data">'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
 $html .= "\t\t".'</tr>'."\n";
 $html .= "\t".'</thead>'."\n";
 $html .= "\t".'<tbody>'."\n";
 $html .= implode('',$rows);
-//  Modified by CANARIE Inc. Beginning
-//  Changed the displaying format
-$html .= "\t\t\t".'<th>'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
 //  Modified by CANARIE Inc. Beginning
 //  Changed the displaying format
 $html .= "\t\t\t".'<th>'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
