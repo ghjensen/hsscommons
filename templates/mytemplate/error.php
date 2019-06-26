@@ -33,7 +33,8 @@
 /**
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
- * Summary of changes: Minor customization.
+ * Summary of changes: Minor customization based on Hubzero's template of Kimera
+ * 
  */
 
 // Get browser info to set some classes

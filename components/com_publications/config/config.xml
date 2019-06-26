@@ -44,6 +44,7 @@
 		<field name="masterimage" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DEFAULT_MASTER_IMAGE" description="COM_PUBLICATIONS_CONFIG_DEFAULT_MASTER_IMAGE_DESC" />
 		<field name="webpath" type="text" menu="hide" default="/site/publications" label="COM_PUBLICATIONS_CONFIG_FILE_PATH" description="COM_PUBLICATIONS_CONFIG_FILE_PATH_DESC" />
 		<field name="sftppath" type="text" menu="hide" default="/site/publications/ftp" label="COM_PUBLICATIONS_CONFIG_SFTP_PATH" description="COM_PUBLICATIONS_CONFIG_SFTP_PATH_DESC" />
+		<field name="sftpsize" type="text" menu="hide" default="5000" label="COM_PUBLICATIONS_CONFIG_SFTP_SIZE" description="COM_PUBLICATIONS_CONFIG_SFTP_SIZE_DESC" />
 		<field name="documentation" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DOCUMENTATION_PATH" description="COM_PUBLICATIONS_CONFIG_DOCUMENTATION_PATH_DESC" />
 		<field name="deposit_terms" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_TERMS_URL" description="COM_PUBLICATIONS_CONFIG_TERMS_URL_DESC" />
 	</fieldset>
@@ -60,12 +61,15 @@
 		</field>
 		<field name="autoapproved_users" label="COM_PUBLICATIONS_CONFIG_AUTO_APPROVED_USERS" type="textarea" rows="8" cols="40" default="" description="COM_PUBLICATIONS_CONFIG_AUTO_APPROVED_USERS_DESC" />
 	</fieldset>
-	<fieldset name="DOI">
+	<fieldset name="DOI" addfieldpath="/core/components/com_publications/config/fields">
 		<field name="aboutdoi" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_ABOUT_DOI" description="COM_PUBLICATIONS_CONFIG_ABOUT_DOI_DESC" />
+		<field name="datacite_ezid_doi_service_switch" type="doiservicetype" default="1" label="COM_PUBLICATIONS_CONFIG_DATACITE_EZID_DOI_SERVICE_SWITCH" description="COM_PUBLICATIONS_CONFIG_DATACITE_EZID_DOI_SERVICE_SWITCH_DESC" />
 		<field name="doi_shoulder" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DOI_NAMESPACE_START" description="COM_PUBLICATIONS_CONFIG_DOI_NAMESPACE_START_DESC" />
 		<field name="doi_prefix" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DOI_NAMESPACE_END" description="COM_PUBLICATIONS_CONFIG_DOI_NAMESPACE_END_DESC" />
-		<field name="doi_service" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DOI_SERVICE" description="COM_PUBLICATIONS_CONFIG_DOI_SERVICE_DESC" />
-		<field name="doi_userpw" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DOI_SERVICE_USERPASS" description="COM_PUBLICATIONS_CONFIG_DOI_SERVICE_USERPASS_DESC" />
+		<field name="datacite_doi_service" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DATACITE_DOI_SERVICE" description="COM_PUBLICATIONS_CONFIG_DATACITE_DOI_SERVICE_DESC" />
+		<field name="datacite_doi_userpw" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DATACITE_DOI_SERVICE_USERPASS" description="COM_PUBLICATIONS_CONFIG_DATACITE_DOI_SERVICE_USERPASS_DESC" />
+		<field name="ezid_doi_service" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_EZID_DOI_SERVICE" description="COM_PUBLICATIONS_CONFIG_EZID_DOI_SERVICE_DESC" />
+		<field name="ezid_doi_userpw" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_EZID_DOI_SERVICE_USERPASS" description="COM_PUBLICATIONS_CONFIG_EZID_DOI_SERVICE_USERPASS_DESC" />
 		<field name="doi_xmlschema" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DOI_XML_SCHEMA" description="COM_PUBLICATIONS_CONFIG_DOI_XML_SCHEMA_DESC" />
 		<field name="doi_publisher" type="text" menu="hide" default="" label="COM_PUBLICATIONS_CONFIG_DOI_PUBLISHER" description="COM_PUBLICATIONS_CONFIG_DOI_PUBLISHER_DESC" />
 		<field name="doi_resolve" type="text" menu="hide" default="http://dx.doi.org/" label="COM_PUBLICATIONS_CONFIG_DOI_RESOLVE" description="COM_PUBLICATIONS_CONFIG_DOI_RESOLVE_DESC" />

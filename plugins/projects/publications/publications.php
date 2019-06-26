@@ -2215,13 +2215,16 @@ class plgProjectsPublications extends \Hubzero\Plugin\Plugin
 		$pub->version->set('modified', Date::toSql());
 		$pub->version->set('modified_by', $this->_uid);
 
+		// Get DOI service
+		$doiService = new \Components\Publications\Models\Doi($pub);
+
 		// Issue DOI
 		if ($requireDoi > 0 && $this->_task == 'publish' && !$pub->version->doi)
 		{
-			// Get DOI service
-			$doiService = new \Components\Publications\Models\Doi($pub);
 			$extended = $state == 5 ? false : true;
-			$doi = $doiService->register($extended, ($state == 5 ? 'reserved' : 'public'));
+			$status   = $state == 5 ? 'reserved' : 'public';
+
+			$doi = $doiService->register(true, false, null, $extended, $status);
 
 			// Store DOI
 			if ($doi)
@@ -2232,8 +2235,30 @@ class plgProjectsPublications extends \Hubzero\Plugin\Plugin
 			// Can't proceed without a valid DOI
 			if (!$doi || $doiService->getError())
 			{
-				$this->setError(Lang::txt('PLG_PROJECTS_PUBLICATIONS_ERROR_DOI') . ' ' . $doiService->getError());
+				if ($doiService->_configs->dataciteEZIDSwitch == \Components\Publications\Models\Doi::SWITCH_OPTION_DATACITE)
+				{
+					$this->setError(Lang::txt('PLG_PROJECTS_PUBLICATIONS_ERROR_REGISTER_METADATA') . ' ' . $doiService->getError());
+				}
+				elseif ($doiService->_configs->dataciteEZIDSwitch == \Components\Publications\Models\Doi::SWITCH_OPTION_EZID)
+				{
+					$this->setError(Lang::txt('PLG_PROJECTS_PUBLICATIONS_ERROR_DOI') . ' ' . $doiService->getError());
+				}
+				elseif ($doiService->_configs->dataciteEZIDSwitch == \Components\Publications\Models\Doi::SWITCH_OPTION_NONE)
+				{
+					$this->setError(Lang::txt('COM_PUBLICATIONS_ERROR_NO_DOI_SERVICE_ACTIVATED'));
+				}
 				$doiErr = true;
+			}
+		}
+
+		// Register DOI name and URL for DOI when the publication is set to be automatically approved.
+		if (!$review && ($autoApprove || $this->_pubconfig->get('autoapprove') == 1))
+		{
+			$doiService->register(false, true, $pub->version->get('doi'));
+
+			if ($doiService->getError())
+			{
+				$this->setError($doiService->getError());
 			}
 		}
 
@@ -2432,7 +2457,7 @@ class plgProjectsPublications extends \Hubzero\Plugin\Plugin
 			$pub->_curationModel->package(true);
 		}
 
-		if ($pub->version->get('state') == 1)
+		if ($pub->version->get('state') == 1 && !$pub->isEmbargoed())
 		{
 			$pub->_curationModel->createSymLink();
 		}

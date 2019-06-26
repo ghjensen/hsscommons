@@ -8,7 +8,7 @@
 /**
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
- * Summary of changes: Minor customization.
+ * Summary of changes: Minor customization based on Hubzero's template of Kimera
  *
  */
  
@@ -144,6 +144,7 @@
 
 	#content .grid {
 		padding: 30px;
+		font-size: 1em;
 	}
 
 @media (min-width: 40em) {

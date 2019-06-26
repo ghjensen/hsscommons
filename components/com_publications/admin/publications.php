@@ -30,6 +30,13 @@
  * @license   http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ *
+ */
+
 namespace Components\Publications\Admin;
 
 if (!\User::authorise('core.manage', 'com_publications'))
@@ -73,9 +80,10 @@ if (!file_exists(__DIR__ . DS . 'controllers' . DS . $controllerName . '.php'))
 	\Route::url('index.php?option=com_publications&controller=batchcreate'),
 	$controllerName == 'batchcreate'
 );
-// When com_publications is under app folder, this needs to change
-//require_once dirname(dirname(__DIR__)) . DS . 'com_plugins' . DS . 'helpers' . DS . 'plugins.php';
-require_once(PATH_CORE . DS . 'components' . DS . 'com_plugins' . DS . 'helpers' . DS . 'plugins.php');
+// Modified by CANARIE Inc. Beginning
+// Use the core path instead of app
+require_once \Component::path('com_plugins') . DS . 'helpers' . DS . 'plugins.php';
+// Modified by CANARIE Inc. End
 if (\Components\Plugins\Helpers\Plugins::getActions()->get('core.manage'))
 {
 	\Submenu::addEntry(

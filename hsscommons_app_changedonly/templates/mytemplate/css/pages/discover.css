@@ -144,6 +144,7 @@
 
 	#content .grid {
 		padding: 30px;
+		font-size: 1em;
 	}
 
 @media (min-width: 40em) {
