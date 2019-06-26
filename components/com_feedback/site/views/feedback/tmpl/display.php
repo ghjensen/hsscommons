@@ -4,7 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 // No direct access
 defined('_HZEXEC_') or die();
 
@@ -54,17 +58,14 @@ $this->css('introduction.css', 'system')
 					</div>
 				</div><!-- / .col span6 omega -->
 			</div><!-- / .grid -->
-			<?php if ($this->wishlist || $this->xpoll) { ?>
+			<!--  Modified by CANARIE Inc. Beginning -->
+			<!--  changed from "xpoll" to "poll" -->
+			<?php if ($this->wishlist || $this->poll) { ?>
+			<!--  Modified by CANARIE Inc. End -->
 				<div class="grid">
-					<div class="col span6">
-					<?php if ($this->wishlist) { ?>
-						<div class="wish">
-							<h3><a href="<?php echo Route::url('index.php?option=com_wishlist'); ?>"><?php echo Lang::txt('COM_FEEDBACK_WISHLIST_HEADER'); ?></a></h3>
-							<p><?php echo Lang::txt('COM_FEEDBACK_WISHLIST_DESCRIPTION'); ?></p>
-							<p><a class="more btn" href="<?php echo Route::url('index.php?option=com_wishlist'); ?>"><?php echo Lang::txt('COM_FEEDBACK_WISHLIST_BUTTON'); ?></a></p>
-						</div>
-					<?php } ?>
-					</div><!-- / .col span6 -->
+					<!--  Modified by CANARIE Inc. Beginning -->
+					<!--  Removed the whole div for wishlist -->
+					<!--  Modified by CANARIE Inc. End -->
 					<div class="col span6 omega">
 					<?php if ($this->poll) { ?>
 						<div class="poll">
