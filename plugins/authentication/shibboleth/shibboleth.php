@@ -1,53 +1,18 @@
 <?php
 /**
- * HUBzero CMS
- *
- * Copyright 2005-2015 HUBzero Foundation, LLC.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * HUBzero is a registered trademark of Purdue University.
- *
- * @package   hubzero-cms
- * @author    Steven Snyder <snyder13@purdue.edu>
- * @author    Sam Wilson <samwilson@purdue.edu>
- * @copyright Copyright 2005-2015 HUBzero Foundation, LLC.
- * @license   http://opensource.org/licenses/MIT MIT
+ * @package    hubzero-cms
+ * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
+ * @license    http://opensource.org/licenses/MIT MIT
  */
-
-/**
-*
-* Modified by CANARIE Inc. for the HSSCommons project.
-*
-* Summary of changes: Customized for Canadian Access Federation (CAF).
-*
-*/
 
 // No direct access
 defined('_HZEXEC_') or die();
 
 use Hubzero\Utility\Cookie;
-//  Modified by CANARIE Inc. Beginning
+
 /**
- * Authentication Plugin class for Shibboleth/CAF
+ * Authentication Plugin class for Shibboleth/InCommon
  */
-//  Modified by CANARIE Inc. End
 class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 {
 	/**
@@ -70,7 +35,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			if (!\Log::has('shib'))
 			{
-				$location = $params->get('debug_location', '/var/log/apache2/shibboleth.log');
+				$location = $params->get('debug_location', '/var/log/apache2/php/shibboleth.log');
 				$location = explode(DS, $location);
 				$file     = array_pop($location);
 
@@ -119,9 +84,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		// oops ... hopefully not reachable
 		if (!($idp = $dbh->loadResult()) || !($label = self::getInstitutionByEntityId($idp, 'label')))
 		{
-			//  Modified by CANARIE Inc. Beginning
-			return 'CAF';
-			//  Modified by CANARIE Inc. End
+			return 'InCommon';
 		}
 
 		return $label;
@@ -218,9 +181,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			return $rv;
 		}
 		// Probably only possible if the user abruptly deletes their cookies
-		//  Modified by CANARIE Inc. Beginning
-		return 'CAF';
-		//  Modified by CANARIE Inc. End
+		return 'InCommon';
 	}
 
 	/**
@@ -284,15 +245,41 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			return '<span />';
 		}
-		// Modified by CANARIE Inc. Beginning
-		// Replaced all the other code with this function so the Shibboloeth Discovery will depend on the configuration in shibboleth2.xml
-		// Attach CAF style and login
-		\Hubzero\Document\Assets::addPluginstylesheet('authentication', 'shibboleth', 'canariecaf.css');
-		$login_provider_html = '<a class="canariecaf account canariecaf-color" href="' . Route::url('login/shibboleth') . '">';
-		$login_provider_html .= '<div class="signin">Sign in with CAF</div>';
-		$login_provider_html .= '</a>';
-		return $login_provider_html;
-		// Modified by CANARIE Inc. End
+		// Saved id provider? Use it as the default
+		$prefill = isset($_COOKIE['shib-entity-id']) ? $_COOKIE['shib-entity-id'] : null;
+		if (!$prefill && // no cookie
+				($host = self::getHostByAddress(isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'], $params->get('dns', '8.8.8.8'))) && // can get a host
+				preg_match('/[.]([^.]*?[.][a-z0-9]+?)$/', $host, $ma))
+		{ // Hostname lookup seems php jsonrational (not an ip address, has a few dots in it)
+			// Try to look up a provider to pre-select based on the user's hostname
+			foreach (self::getInstitutions() as $inst)
+			{
+				if (fnmatch('*'.$ma[1], $inst['host']))
+				{
+					$prefill = $inst['entity_id'];
+					break;
+				}
+			}
+		}
+
+		// Attach style and scripts
+		foreach (array('bootstrap-select.min.js', 'shibboleth.js', 'bootstrap-select.min.css', 'bootstrap-theme.min.css', 'shibboleth.css') as $asset)
+		{
+			$mtd = 'addPlugin'.(preg_match('/[.]js$/', $asset) ? 'script': 'stylesheet');
+			\Hubzero\Document\Assets::$mtd('authentication', 'shibboleth', $asset);
+		}
+
+		list($a, $h) = self::htmlify();
+
+		// Make a dropdown/button combo that (hopefully) gets prettied up client-side into a bootstrap dropdown
+		$html = ['<div class="shibboleth account incommon-color" data-placeholder="'.$a($title).'">'];
+		$html[] = '<h3>Select an affiliated institution</h3>';
+		$html[] = '<ol>';
+		$html = array_merge($html, array_map(function($idp) use($h, $a) {
+			return '<li data-entityid="'.$a($idp['entity_id']).'" data-content="'.(isset($idp['logo_data']) ? $a($idp['logo_data']) : '').' '.$h($idp['label']).'"><a href="'.Route::url('index.php?option=com_users&view=login&authenticator=shibboleth&idp='.$a($idp['entity_id'])).'">'.$h($idp['label']).'</a></li>';
+		}, self::getInstitutions()));
+		$html[] = '</ol></div>';
+		return $html;
 	}
 
 	/**
@@ -366,6 +353,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		}
 
 		// Extract variables set by mod_shib, if any
+		// https://www.incommon.org/federation/attributesummary.html
 		if (($sid = isset($_SERVER['REDIRECT_Shib-Session-ID']) ? $_SERVER['REDIRECT_Shib-Session-ID'] : (isset($_SERVER['Shib-Session-ID']) ? $_SERVER['Shib-Session-ID'] : null)))
 		{
 			$attrs = array(
@@ -406,11 +394,11 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			self::log('session attributes: ', $attrs);
 			self::log('cookie', $_COOKIE);
 			self::log('server attributes: ', $_SERVER);
-			//JFactory::getSession()->set('shibboleth.session', $attrs);
+
 			$key = trim(base64_encode(openssl_random_pseudo_bytes(128)));
 			setcookie('shib-session', $key);
 			$dbh = App::get('db');
-			$dbh->setQuery('INSERT INTO #__shibboleth_sessions(session_key, data, created) VALUES('.$dbh->quote($key).', '.$dbh->quote(json_encode($attrs)).', UTC_TIMESTAMP)');
+			$dbh->setQuery('INSERT INTO `#__shibboleth_sessions` (session_key, data) VALUES('.$dbh->quote($key).', '.$dbh->quote(json_encode($attrs)).')');
 			$dbh->execute();
 		}
 	}
@@ -449,7 +437,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			self::log('failed to look up entity id, redirect', array('eid' => $eid, 'url' => $service.'/index.php?option='.$com_user.'&task=login'.$return));
 			App::redirect($service.'/index.php?option='.$com_user.'&task=login'.$return);
 		}
-		
+
 		// We're about to do at least a few redirects, some of which are out of our
 		// control, so save a bit of state for when we get back
 		//
@@ -534,7 +522,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		if (isset($options['shibboleth']['eppn']))
 		{
 			self::log('auth with', $options['shibboleth']);
-			$method = (\Component::params('com_users')->get('allowUserRegistration', false)) ? 'find_or_create' : 'find';
+			$method = (\Component::params('com_members')->get('allowUserRegistration', false)) ? 'find_or_create' : 'find';
 			$hzal = \Hubzero\Auth\Link::$method('authentication', 'shibboleth', $options['shibboleth']['idp'], $options['shibboleth']['eppn']);
 
 			if ($hzal === false)
@@ -623,10 +611,21 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			else
 			{
 				$hzal = \Hubzero\Auth\Link::find_or_create('authentication', 'shibboleth', $status['idp'], $username);
-				$hzal->set('user_id', User::get('id'));
-				$hzal->set('email', $status['email']);
-				self::log('setting link', $hzal);
-				$hzal->update();
+				// if `$hzal` === false, then either:
+				//    the authenticator Domain couldn't be found,
+				//    no username was provided,
+				//    or the Link record failed to be created
+				if ($hzal)
+				{
+					$hzal->set('user_id', User::get('id'));
+					$hzal->set('email', $status['email']);
+					self::log('setting link', $hzal);
+					$hzal->update();
+				}
+				else
+				{
+					Log::error(sprintf('Hubzero\Auth\Link::find_or_create("authentication", "shibboleth", %s, %s) returned false', $status['idp'], $username));
+				}
 			}
 		}
 		else
