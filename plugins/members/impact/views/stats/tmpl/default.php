@@ -1,37 +1,8 @@
 <?php
 /**
- * @package		HUBzero CMS
- * @author		Shawn Rice <zooley@purdue.edu>
- * @copyright	Copyright 2005-2009 HUBzero Foundation, LLC.
- * @license		http://opensource.org/licenses/MIT MIT
- *
- * Copyright 2005-2009 HUBzero Foundation, LLC.
- * All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- */
-
-/**
- * Modified by CANARIE Inc. for the HSSCommons project.
- *
- * Summary of changes: Minor customization.
+ * @package    hubzero-cms
+ * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
+ * @license    http://opensource.org/licenses/MIT MIT
  */
 
 // No direct access
@@ -114,14 +85,7 @@ tooltip: true,
 				<tr><td colspan="6" class="pubstats-h">
 					<img src="<?php echo Route::url('index.php?option=com_publications&id=' . $stat->publication_id . '&v=' . $stat->publication_version_id) . '/Image:thumb'; ?>" alt=""/>
 					<span class="h-title"><a href="<?php echo Route::url('index.php?option=com_publications' . '&id=' . $stat->publication_id) . '?version=' . $stat->version_number; ?>"><?php echo $stat->title; ?></a></span>
-					<!--  Modified by CANARIE Inc. Beginning -->
-					<!--  Only display manually created projects -->
-				    <?php if (strpos($stat->project_title, "pub-") === 0) {?>
-                    	<span class="block mini faded"><?php echo Lang::txt('PLG_MEMBERS_IMPACT_PUBLISHED') . ' ' . Date::of($stat->published_up)->toLocal(Lang::txt('DATE_FORMAT_HZ1')) . ' ' . Lang::txt('PLG_MEMBERS_IMPACT_IN') . ' ' . $stat->cat_name; ?> </span>
-                    <?php } else {?>
-                    	<span class="block mini faded"><?php echo Lang::txt('PLG_MEMBERS_IMPACT_PUBLISHED') . ' ' . Date::of($stat->published_up)->toLocal(Lang::txt('DATE_FORMAT_HZ1')) . ' ' . Lang::txt('PLG_MEMBERS_IMPACT_IN') . ' ' . $stat->cat_name; ?> <span> | <?php echo Lang::txt('PLG_MEMBERS_IMPACT_FROM_PROJECT'); ?> <a href="<?php echo Route::url('index.php?option=com_projects&task=view&alias=' . $stat->project_alias); ?>"><?php echo \Hubzero\Utility\String::truncate($stat->project_title, 65); ?></a></span></span>
-                    <?php }?>
-					<!--  Modified by CANARIE Inc. End -->
+					<span class="block mini faded"><?php echo Lang::txt('PLG_MEMBERS_IMPACT_PUBLISHED') . ' ' . Date::of($stat->published_up)->toLocal(Lang::txt('DATE_FORMAT_HZ1')) . ' ' . Lang::txt('PLG_MEMBERS_IMPACT_IN') . ' ' . $stat->cat_name; ?> <span> | <?php echo Lang::txt('PLG_MEMBERS_IMPACT_FROM_PROJECT'); ?> <a href="<?php echo Route::url('index.php?option=com_projects&task=view&alias=' . $stat->project_alias); ?>"><?php echo \Hubzero\Utility\Str::truncate($stat->project_title, 65); ?></a></span></span>
 				</td></tr>
 				<tr>
 					<td></td>
