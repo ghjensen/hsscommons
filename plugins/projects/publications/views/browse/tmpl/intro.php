@@ -4,15 +4,20 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 // No direct access
 defined('_HZEXEC_') or die();
 ?>
 
 <div id="pubintro">
-	<h3><?php echo Lang::txt('PLG_PROJECTS_PUBLICATIONS_PUB_HOW_IT_WORKS'); ?> <?php if ($this->pub->config('documentation')) { ?>
-	<span class="learnmore"><a href="<?php echo $this->pub->config('documentation'); ?>"><?php echo Lang::txt('PLG_PROJECTS_PUBLICATIONS_LEARN_MORE'); ?> &raquo;</a></span>
-	<?php } ?></h3>
+	<!--  Modified by CANARIE Inc. Beginning -->
+	<!--  Removed the "Learn More" link -->
+	<h3><?php echo Lang::txt('PLG_PROJECTS_PUBLICATIONS_PUB_HOW_IT_WORKS'); ?></h3>
+	<!--  Modified by CANARIE Inc. End -->
 
 	<div class="grid">
 		<div class="col span4 step-one">
