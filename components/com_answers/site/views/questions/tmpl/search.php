@@ -4,7 +4,10 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
 // No direct access
 defined('_HZEXEC_') or die();
 
@@ -269,14 +272,9 @@ $sortdir = $this->filters['sort_Dir'] == 'DESC' ? 'ASC' : 'DESC';
 					<?php echo Lang::txt('COM_ANSWERS_GET_STARTED_HELP', Route::url('index.php?option=com_help&component=answers&page=index')); ?>
 				</p>
 			</div><!-- / .container -->
-			<?php if ($this->config->get('banking')) { ?>
-				<div class="container">
-					<h3><?php echo Lang::txt('COM_ANSWERS_EARN_POINTS'); ?></h3>
-					<p>
-						<?php echo Lang::txt('COM_ANSWERS_START_EARNING_POINTS'); ?> <a href="<?php echo $this->config->get('infolink'); ?>"><?php echo Lang::txt('COM_ANSWERS_LEARN_MORE'); ?></a>.
-					</p>
-				</div><!-- / .container -->
-			<?php } ?>
+			<!--  Modified by CANARIE Inc. Beginning -->
+			<!--  Removed points related content -->
+			<!--  Modified by CANARIE Inc. End -->
 		</aside><!-- / .aside -->
 	</div><!-- / .section-inner -->
 </section><!-- / .main section -->
