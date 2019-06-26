@@ -1,33 +1,8 @@
 <?php
 /**
- * HUBzero CMS
- *
- * Copyright 2005-2015 HUBzero Foundation, LLC.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * HUBzero is a registered trademark of Purdue University.
- *
- * @package   hubzero-cms
- * @author    Alissa Nedossekina <alisa@purdue.edu>
- * @copyright Copyright 2005-2015 HUBzero Foundation, LLC.
- * @license   http://opensource.org/licenses/MIT MIT
+ * @package    hubzero-cms
+ * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
+ * @license    http://opensource.org/licenses/MIT MIT
  */
 
 namespace Components\Projects\Models;
@@ -341,7 +316,7 @@ class Repo extends Obj
 	 */
 	public function dirExists($dirPath = null)
 	{
-		if (!$dirPath)
+		if (is_null($dirPath))
 		{
 			return false;
 		}
@@ -397,7 +372,9 @@ class Repo extends Obj
 		$dirPath   = isset($params['subdir']) ? $params['subdir'] : null;
 		$remotes   = isset($params['remoteConnections']) ? $params['remoteConnections'] : array();
 
-		$localPath = $dirPath ? $dirPath . DS . $item : $item;
+		$localPath = !is_null($dirPath) ? $dirPath . DS . $item : $item;
+		$localPath = ltrim($localPath, DS);
+
 		$file = new Models\File($localPath, $path);
 		$file->set('type', $type);
 		if ($type == 'folder')
@@ -518,7 +495,8 @@ class Repo extends Obj
 		$reserved  = isset($params['reserved']) ? $params['reserved'] : array();
 
 		$newDir    = isset($params['newDir']) ? $params['newDir'] : null; // New directory name
-		$newDir    = Filesystem::cleanPath($newDir);
+		$newDir    = Filesystem::cleanDirectory($newDir); // Remove unwanted characters
+		$newDir    = Filesystem::cleanPath($newDir); // Remove path shenanigans like "/./"
 		$localDirPath = $dirPath ? $dirPath . DS . $newDir : $newDir;
 
 		// Check that we have directory to create
@@ -538,8 +516,7 @@ class Repo extends Obj
 		// Directory already exists ?
 		if ($this->dirExists($localDirPath))
 		{
-			$this->setError(Lang::txt('COM_PROJECTS_FILES_ERROR_DIR_CREATE') . ' "' . $newDir . '". '
-			. Lang::txt('COM_PROJECTS_FILES_ERROR_DIRECTORY_EXISTS'));
+			$this->setError(Lang::txt('COM_PROJECTS_FILES_ERROR_DIR_CREATE') . ' "' . $newDir . '". ' . Lang::txt('COM_PROJECTS_FILES_ERROR_DIRECTORY_EXISTS'));
 			return false;
 		}
 
@@ -744,7 +721,7 @@ class Repo extends Obj
 		}
 
 		// No new location
-		if ($targetDir == $dirPath)
+		if ($targetDir === $dirPath)
 		{
 			return false;
 		}
@@ -753,6 +730,7 @@ class Repo extends Obj
 		if ($create == true)
 		{
 			$localDirPath = $dirPath ? $dirPath . DS . $targetDir : $targetDir;
+			$localDirPath = ltrim($localDirPath, DS);
 			if (!$this->dirExists($localDirPath))
 			{
 				$newDirParams = array(
@@ -775,7 +753,8 @@ class Repo extends Obj
 			'subdir' => $targetDir,
 			'path'   => $path
 		);
-		$targetFile = $this->getMetadata($item, $type, $targetParams);
+
+		$targetFile = $this->getMetadata(basename($item), $type, $targetParams);
 
 		// Do the move
 		$moveParams = array(
