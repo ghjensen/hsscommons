@@ -4,12 +4,18 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Removed affiliated/nonaffiliated option.
+ */
 // No direct access
 defined('_HZEXEC_') or die();
 
-$numaff = 0;
-$numnon = 0;
+// Modified by CANARIE Inc. Beginning
+// replaced two variables with one
+$numitems = 0;
+// Modified by CANARIE Inc. End
 
 // Did we get any results back?
 if ($this->citations)
@@ -18,8 +24,10 @@ if ($this->citations)
 	include_once Component::path('com_citations') . DS . 'helpers' . DS . 'format.php';
 
 	// Set some vars
-	$affiliated    = '';
-	$nonaffiliated = '';
+	// Modified by CANARIE Inc. Beginning
+	// replaced two variables with one
+	$item = '';
+	// Modified by CANARIE Inc. End
 
 	$formatter = new \Components\Citations\Helpers\Format;
 	$formatter->setTemplate($this->format);
@@ -35,7 +43,10 @@ if ($this->citations)
 			$formatted = str_replace('doi:' . $cite->doi, '<a href="' . $cite->url . '" rel="external">' . 'doi:' . $cite->doi . '</a>', $formatted);
 		}
 
-		$item  = "\t" . '<li>' . "\n";
+		// Modified by CANARIE Inc. Beginning
+		// replaced "=" with ".="
+		$item .= "\t" . '<li>' . "\n";
+		// Modified by CANARIE Inc. End
 		$item .= $formatted;
 		$item .= "\t\t" . '<p class="details">' . "\n";
 		if ($showLinks)
@@ -53,40 +64,27 @@ if ($this->citations)
 		$item .= "\t\t" . '</p>' . "\n";
 		$item .= "\t" . '</li>' . "\n";
 
-		// Decide which group to add it to
-		if ($cite->affiliated)
-		{
-			$affiliated .= $item;
-			$numaff++;
-		}
-		else
-		{
-			$nonaffiliated .= $item;
-			$numnon++;
-		}
+		// Modified by CANARIE Inc. Beginning
+		// replaced the code for adding numbers
+		$numitems++;
+		// Modified by CANARIE Inc. End
 	}
 }
 ?>
 <h3 id="citations">
 	<?php echo Lang::txt('PLG_PUBLICATION_CITATIONS'); ?>
-	<span>
-		<a href="<?php echo Route::url('index.php?option=' . $this->option . '&id=' . $this->publication->id . '&active=citations&v=' . $this->publication->version_number . '#nonaffiliated'); ?>"><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_NONAFF'); ?> (<?php echo $numnon; ?>)</a> |
-		<a href="<?php echo Route::url('index.php?option=' . $this->option . '&id=' . $this->publication->id . '&active=citations&v=' . $this->publication->version_number . '#affiliated'); ?>"><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_AFF'); ?> (<?php echo $numaff; ?>)</a>
-	</span>
+	 <!--  Modified by CANARIE Inc. Beginning -->
+     <!--  Replaced how the cited number be displayed -->
+     (<?php echo $numitems; ?>)
+     <!--  Modified by CANARIE Inc. End -->
 </h3>
 <?php if ($this->citations) { ?>
-	<?php if ($nonaffiliated) { ?>
-		<h4 id="nonaffiliated"><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_NOT_AFFILIATED'); ?></h4>
-		<ul class="citations results">
-			<?php echo $nonaffiliated; ?>
-		</ul>
-	<?php } ?>
-	<?php if ($affiliated) { ?>
-		<h4 id="affiliated"><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_AFFILIATED'); ?></h4>
-		<ul class="citations results">
-			<?php echo $affiliated; ?>
-		</ul>
-	<?php } ?>
+	<!--  Modified by CANARIE Inc. Beginning -->
+    <!--  Replaced how the citations results be displayed -->
+    <ul class="citations results">
+        <?php echo $item; ?>
+    </ul>
+    <!--  Modified by CANARIE Inc. End -->
 <?php } else { ?>
 	<p><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_NO_CITATIONS_FOUND'); ?></p>
 <?php }
