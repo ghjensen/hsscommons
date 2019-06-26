@@ -4,7 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 // No direct access
 defined('_HZEXEC_') or die( 'Restricted access');
 
@@ -92,8 +96,9 @@ foreach ($yearlystats as $year => $amt)
 
 	$tr  = "\t\t".'<tr class="'.$cls.'">'."\n";
 	$tr .= "\t\t\t".'<th class="textual-data">'.$year.'</th>'."\n";
-	$tr .= "\t\t\t".'<td class="numerical-data">'.$amt['affiliate'].'</td>'."\n";
-	$tr .= "\t\t\t".'<td class="numerical-data">'.$amt['non-affiliate'].'</td>'."\n";
+	//  Modified by CANARIE Inc. Beginning
+	//  Removed two lines of code for affiliate and non-affiliate
+	//  Modified by CANARIE Inc. End
 	$tr .= "\t\t\t".'<td class="numerical-data highlight">'.(intval($amt['affiliate']) + intval($amt['non-affiliate'])).'</td>'."\n";
 	$tr .= "\t\t".'</tr>'."\n";
 
@@ -107,8 +112,9 @@ $html .= "\t".'<caption>'.Lang::txt('COM_CITATIONS_TABLE_METRICS_YEAR').'</capti
 $html .= "\t".'<thead>'."\n";
 $html .= "\t\t".'<tr>'."\n";
 $html .= "\t\t\t".'<th scope="col" class="textual-data">'.Lang::txt('COM_CITATIONS_YEAR').'</th>'."\n";
-$html .= "\t\t\t".'<th scope="col" class="numerical-data"><sup><a href="#fn-1">1</a></sup> '.Lang::txt('COM_CITATIONS_AFFILIATED').'</th>'."\n";
-$html .= "\t\t\t".'<th scope="col" class="numerical-data"><sup><a href="#fn-1">1</a></sup> '.Lang::txt('COM_CITATIONS_NONAFFILIATED').'</th>'."\n";
+//  Modified by CANARIE Inc. Beginning
+//  Removed two lines of code for affiliate and non-affiliate
+//  Modified by CANARIE Inc. End
 $html .= "\t\t\t".'<th scope="col" class="numerical-data">'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
 $html .= "\t\t".'</tr>'."\n";
 $html .= "\t".'</thead>'."\n";
@@ -117,7 +123,10 @@ $html .= implode('', $rows);
 $html .= "\t".'</tbody>'."\n";
 $html .= "\t".'<tfoot>'."\n";
 $html .= "\t\t".'<tr class="summary">'."\n";
-$html .= "\t\t\t".'<th class="numerical-data" colspan="3">'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
+//  Modified by CANARIE Inc. Beginning
+//  Changed the displaying format
+$html .= "\t\t\t".'<th>'.Lang::txt('COM_CITATIONS_TOTAL').'</th>'."\n";
+//  Modified by CANARIE Inc. End
 $html .= "\t\t\t".'<td class="numerical-data highlight">'.$tot.'</td>'."\n";
 $html .= "\t\t".'</tr>'."\n";
 $html .= "\t".'</tfoot>'."\n";
@@ -233,9 +242,9 @@ $html .= "\t\t\t".'<td class="numerical-data">'.$sumval.'</td>'."\n";
 $html .= "\t\t".'</tr>'."\n";
 $html .= "\t".'</tfoot>'."\n";
 $html .= '</table>'."\n";
-$html .= '<div class="footnotes"><hr />
-	<ol><li id="fn-1">'.Lang::txt('COM_CITATIONS_METRICS_FOOTNOTE').'</li></ol>
-	</div>'."\n";
+//  Modified by CANARIE Inc. Beginning
+//  Removed three lines of code for footnotes
+//  Modified by CANARIE Inc. End
 
 echo $html;
 

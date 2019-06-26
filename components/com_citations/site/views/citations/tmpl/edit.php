@@ -4,7 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 // No direct access
 defined('_HZEXEC_') or die();
 
@@ -431,9 +435,9 @@ $pid = Request::getInt('publication', 0);
 									echo ' <option value=""';
 									echo ($this->assocs[$i]->tbl == '') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_SELECT').'</option>'."\n";
-									echo ' <option value="resource"';
-									echo ($this->assocs[$i]->tbl == 'resource') ? ' selected="selected"': '';
-									echo '>'.Lang::txt('COM_CITATIONS_RESOURCE').'</option>'."\n";
+									//  Modified by CANARIE Inc. Beginning
+									//  Removed three lines of code for option of resource
+									//  Modified by CANARIE Inc. End
 									echo ' <option value="publication"';
 									echo ($this->assocs[$i]->tbl == 'publication') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_PUBLICATION').'</option>'."\n";
@@ -445,9 +449,9 @@ $pid = Request::getInt('publication', 0);
 									echo ' <option value=""';
 									echo ($this->assocs[$i]->type == '') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_SELECT').'</option>'."\n";
-									echo ' <option value="references"';
-									echo ($this->assocs[$i]->type == 'references') ? ' selected="selected"': '';
-									echo '>'.Lang::txt('COM_CITATIONS_CONTEXT_REFERENCES').'</option>'."\n";
+									//  Modified by CANARIE Inc. Beginning
+									//  Removed two lines of code for option of references
+									//  Modified by CANARIE Inc. End
 									echo ' <option value="referencedby"';
 									echo ($this->assocs[$i]->type == 'referencedby') ? ' selected="selected"': '';
 									echo '>'.Lang::txt('COM_CITATIONS_CONTEXT_REFERENCEDBY').'</option>'."\n";
@@ -461,30 +465,24 @@ $pid = Request::getInt('publication', 0);
 			</fieldset><div class="clear"></div>
 		<?php } ?>
 
-		<fieldset>
-			<legend><?php echo Lang::txt('COM_CITATIONS_AFFILIATION'); ?></legend>
+		<!--  Modified by CANARIE Inc. Beginning -->
+		<!--  Removed 10 lines of code from fieldset to the label of fundedby -->
+		<!--  Modified by CANARIE Inc. End -->
 
-			<label for="affiliated">
-				<input type="checkbox" class="option" name="fields[affiliated]" id="affiliated" value="1"<?php if ($this->row->affiliated) { echo ' checked="checked"'; } ?> />
-				<?php echo Lang::txt('COM_CITATIONS_AFFILIATED_WITH_YOUR_ORG'); ?>
-			</label>
+		<input type="hidden" name="fields[affiliated]" id="affiliated" value="0" />
+		<input type="hidden" name="fields[uid]" value="<?php echo $this->row->uid; ?>" />
+		<input type="hidden" name="fields[created]" value="<?php echo $this->escape($this->row->created); ?>" />
+		<input type="hidden" name="fields[scope]" value="<?php echo $this->escape($this->row->scope); ?>" />
+		<input type="hidden" name="fields[scope_id]" value="<?php echo $this->escape($this->row->scope_id); ?>" />
+		<input type="hidden" name="fields[published]" value="<?php echo ($this->row->id ? $this->escape($this->row->published) : 1); ?>" />
+		<input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
+		<input type="hidden" name="task" value="save" />
 
-			<label for="fundedby">
-				<input type="checkbox" class="option" name="fields[fundedby]" id="fundedby" value="1"<?php if ($this->row->fundedby) { echo ' checked="checked"'; } ?> />
-				<?php echo Lang::txt('COM_CITATIONS_FUNDED_BY_YOUR_ORG'); ?>
-			</label>
-
-			<input type="hidden" name="fields[uid]" value="<?php echo $this->row->uid; ?>" />
-			<input type="hidden" name="fields[created]" value="<?php echo $this->escape($this->row->created); ?>" />
-			<input type="hidden" name="fields[scope]" value="<?php echo $this->escape($this->row->scope); ?>" />
-			<input type="hidden" name="fields[scope_id]" value="<?php echo $this->escape($this->row->scope_id); ?>" />
-			<input type="hidden" name="fields[published]" value="<?php echo ($this->row->id) ? $this->escape($this->row->published) : 1; ?>" />
-			<input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-			<input type="hidden" name="option" value="<?php echo $this->option; ?>" />
-			<input type="hidden" name="task" value="save" />
-
-			<?php echo Html::input('token'); ?>
-		</fieldset>
+		<?php echo Html::input('token'); ?>
+		<!--  Modified by CANARIE Inc. Beginning -->
+		<!--  Removed one line for the fieldset closing -->
+		<!--  Modified by CANARIE Inc. End -->
+		
 		<div class="clear"></div>
 
 		<p class="submit">
