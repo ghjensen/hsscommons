@@ -1,38 +1,8 @@
 <?php
 /**
- * HUBzero CMS
- *
- * Copyright 2005-2015 HUBzero Foundation, LLC.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * HUBzero is a registered trademark of Purdue University.
- *
- * @package   hubzero-cms
- * @copyright Copyright 2005-2015 HUBzero Foundation, LLC.
- * @license   http://opensource.org/licenses/MIT MIT
- */
-
-/**
- * Modified by CANARIE Inc. for the HSSCommons project.
- *
- * Summary of changes: Minor customization.
+ * @package    hubzero-cms
+ * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
+ * @license    http://opensource.org/licenses/MIT MIT
  */
 
 // No direct access
@@ -154,8 +124,12 @@ Document::setTitle(Lang::txt('COM_KB'));
 							$i++;
 							switch ($i)
 							{
-								case 1: $cls = ''; break;
-								case 2: $cls = ' omega'; break;
+								case 1:
+									$cls = '';
+									break;
+								case 2:
+									$cls = ' omega';
+									break;
 							}
 							?>
 							<div class="col span-half<?php echo $cls; ?>">
@@ -204,9 +178,14 @@ Document::setTitle(Lang::txt('COM_KB'));
 					</p>
 				</div><!-- / .container -->
 			<?php } ?>
-			<!--  Modified by CANARIE Inc. Beginning -->
-			<!--  Removed the whole div for wishlist -->
-			<!--  Modified by CANARIE Inc. End -->
+			<?php if (Component::isEnabled('com_wishlist')) { ?>
+				<div class="container">
+					<h3><?php echo Lang::txt('COM_KB_FEATURE_REQUEST'); ?></h3>
+					<p>
+						<?php echo Lang::txt('COM_KB_HAVE_A_FEATURE_REQUEST'); ?> <a href="<?php echo Route::url('index.php?option=com_wishlist'); ?>"><?php echo Lang::txt('COM_KB_FEATURE_TELL_US'); ?></a>
+					</p>
+				</div><!-- / .container -->
+			<?php } ?>
 			<?php if (Component::isEnabled('com_support')) { ?>
 				<div class="container">
 					<h3><?php echo Lang::txt('COM_KB_TROUBLE_REPORT'); ?></h3>
