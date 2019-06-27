@@ -4,15 +4,24 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ *
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Customized for Canadian Access Federation (CAF).
+ *
+ */
 // No direct access
 defined('_HZEXEC_') or die();
 
 use Hubzero\Utility\Cookie;
 
+//  Modified by CANARIE Inc. Beginning
+
 /**
- * Authentication Plugin class for Shibboleth/InCommon
+ * Authentication Plugin class for Shibboleth/CAF
  */
+//  Modified by CANARIE Inc. End
 class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 {
 	/**
@@ -35,7 +44,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			if (!\Log::has('shib'))
 			{
-				$location = $params->get('debug_location', '/var/log/apache2/php/shibboleth.log');
+				$location = $params->get('debug_location', '/var/log/apache2/shibboleth.log');
 				$location = explode(DS, $location);
 				$file     = array_pop($location);
 
@@ -84,7 +93,9 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		// oops ... hopefully not reachable
 		if (!($idp = $dbh->loadResult()) || !($label = self::getInstitutionByEntityId($idp, 'label')))
 		{
-			return 'InCommon';
+			//  Modified by CANARIE Inc. Beginning
+			return 'CAF';
+			//  Modified by CANARIE Inc. End
 		}
 
 		return $label;
@@ -181,7 +192,9 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			return $rv;
 		}
 		// Probably only possible if the user abruptly deletes their cookies
-		return 'InCommon';
+		//  Modified by CANARIE Inc. Beginning
+		return 'CAF';
+		//  Modified by CANARIE Inc. End
 	}
 
 	/**
@@ -245,6 +258,15 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 		{
 			return '<span />';
 		}
+		// Modified by CANARIE Inc. Beginning
+		// Replaced all the other code with this function so the Shibboloeth Discovery will depend on the configuration in shibboleth2.xml
+		// Attach CAF style and login
+		\Hubzero\Document\Assets::addPluginstylesheet('authentication', 'shibboleth', 'canariecaf.css');
+		$login_provider_html = '<a class="canariecaf account canariecaf-color" href="' . Route::url('login/shibboleth') . '">';
+		$login_provider_html .= '<div class="signin">Sign in with CAF</div>';
+		$login_provider_html .= '</a>';
+		return $login_provider_html;
+		// Modified by CANARIE Inc. End
 		// Saved id provider? Use it as the default
 		$prefill = isset($_COOKIE['shib-entity-id']) ? $_COOKIE['shib-entity-id'] : null;
 		if (!$prefill && // no cookie
@@ -398,7 +420,10 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			$key = trim(base64_encode(openssl_random_pseudo_bytes(128)));
 			setcookie('shib-session', $key);
 			$dbh = App::get('db');
-			$dbh->setQuery('INSERT INTO `#__shibboleth_sessions` (session_key, data) VALUES('.$dbh->quote($key).', '.$dbh->quote(json_encode($attrs)).')');
+			//  Modified by CANARIE Inc. Beginning
+			//  Add UTC TIMESTAMP
+			$dbh->setQuery('INSERT INTO `#__shibboleth_sessions` (session_key, data) VALUES('.$dbh->quote($key).', '.$dbh->quote(json_encode($attrs)).', UTC_TIMESTAMP)');
+			//  Modified by CANARIE Inc. End
 			$dbh->execute();
 		}
 	}

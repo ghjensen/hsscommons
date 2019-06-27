@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+*
+* Modified by CANARIE Inc. for the HSSCommons project.
+*
+* Summary of changes: Minor customization. 
+*
+-->
 <extension version="1.7" type="plugin" group="authentication">
 	<name>Authentication - Shibboleth</name>
 	<creationDate>July 2014</creationDate>
@@ -8,7 +15,9 @@
 	<copyright>Copyright 2005-2019 HUBzero Foundation, LLC.</copyright>
 	<license>http://opensource.org/licenses/MIT MIT</license>
 	<version>1.5</version>
-	<description>Handles user authentication with Shibboleth/InCommon</description>
+	<!--  Modified by CANARIE Inc. Beginning -->
+	<description>Handles user authentication with Shibboleth/CAF</description>
+	<!--  Modified by CANARIE Inc. End -->
 	<files>
 		<filename plugin="shibboleth">shibboleth.php</filename>
 	</files>
@@ -34,15 +43,18 @@
 					<option value="0">JNo</option>
 					<option value="1">JYes</option>
 				</field>
-				<field name="debug_location" type="text" size="35" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_LABEL" default="/var/log/apache2/php/shibboleth.log" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_DESC" />
+				<!--  Modified by CANARIE Inc. Beginning -->
+				<!--  Change the default log path -->
+				<field name="debug_location" type="text" size="35" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_LABEL" default="/var/log/apache2/shibboleth.log" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_DEBUG_LOCATION_DESC" />
+				<!--  Modified by CANARIE Inc. End -->
 				<field name="testkey" type="text" size="20" label="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_TESTING_MODE_LABEL" description="PLG_AUTHENTICATION_SHIBBOLETH_PARAM_TESTING_MODE_DESC" />
 			</fieldset>
 			<fieldset name="Links">
 				<field name="links" type="links" default="[]" />
 			</fieldset>
-			<fieldset name="Institutions">
-				<field name="institutions" type="institutions" default='{"xmlPath": "/etc/shibboleth/shibboleth2.xml", "xmlRead": null, "idps": [], "activeIdps": []}' />
-			</fieldset>
+			<!--  Modified by CANARIE Inc. Beginning -->
+			<!--  Removed the whole fieldset of "Institutions" -->
+			<!--  Modified by CANARIE Inc. End -->
 		</fields>
 	</config>
 </extension>
