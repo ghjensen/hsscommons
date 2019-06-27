@@ -64,7 +64,7 @@ class Helper extends Module
 	 */
 	public function run()
 	{
-		include_once(Component::path('com_projects') . DS . 'tables' . DS . 'project.php');
+		include_once Component::path('com_projects') . DS . 'tables' . DS . 'project.php';
 
 		$database = \App::get('db');
 
