@@ -4,7 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 // No direct access
 defined('_HZEXEC_') or die();
 
@@ -143,7 +147,10 @@ if (!$this->line->hasImage())
 		{
 			$content = $this->line->get('abstract');
 		}
-		else if ($this->line->get('description'))
+		// Modified by CANARIE Inc. Beginning
+		// Changed to always check description
+		if ($this->line->get('description'))
+		// Modified by CANARIE Inc. End
 		{
 			$content = $this->line->get('description');
 		}

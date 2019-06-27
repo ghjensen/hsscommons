@@ -4,7 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ * /
 namespace Components\Publications\Models;
 
 use Hubzero\Base\Obj;
@@ -222,7 +226,11 @@ class Doi extends Obj
 		$this->set('doi', $pub->version->doi);
 		$this->set('title', htmlspecialchars($pub->version->title));
 		$this->set('version', htmlspecialchars($pub->version->version_label));
-		$this->set('abstract', htmlspecialchars($pub->version->abstract));
+		// Modified by CANARIE Inc. Beginning
+		// Changed the description to be called abstract, abstract to be called subject
+		$this->set('abstract', htmlspecialchars($pub->version->description));
+		$this->set('subject', htmlspecialchars($pub->version->abstract));
+		// Modified by CANARIE Inc. End
 		$this->set('url', $this->_configs->livesite . DS . 'publications'. DS . $pub->id . DS . $pub->version->version_number);
 
 		// Set dates
@@ -330,6 +338,10 @@ class Doi extends Obj
 		$this->set('url', '');
 		$this->set('title', '');
 		$this->set('abstract', '');
+		// Modified by CANARIE Inc. Beginning
+		// Add reset for subject
+		$this->set('subject', '');
+		// Modified by CANARIE Inc. End
 		$this->set('license', '');
 		$this->set('version', '');
 		$this->set('relatedDoi', '');
@@ -442,6 +454,19 @@ class Doi extends Obj
 		{
 			$xmlfile.='<rightsList><rights>' . htmlspecialchars($this->get('license')) . '</rights></rightsList>';
 		}
+		// Modified by CANARIE Inc. Beginning
+		// Add subjects
+		if ($this->get('subject'))
+		{
+			$xmlfile .='<subjects>';
+			$subjects = explode(",", $this->get('subject'));
+			foreach ($subjects as $subject)
+			{
+				$xmlfile .='    <subject>' . trim($subject) . '</subject>';
+			}
+			$xmlfile .='</subjects>';
+		}
+		// Modified by CANARIE Inc. End
 		$xmlfile .='<descriptions>
 			<description descriptionType="Abstract">';
 		$xmlfile.= stripslashes(htmlspecialchars($this->get('abstract')));
@@ -687,7 +712,8 @@ class Doi extends Obj
 	 * @param   string  $status  DOI status [draft/reserved, findable/public, registered/unavailable]
 	 * @return  string  response string
 	 */
-	public function startInput($status = 'public')
+	// Modified by CANARIE Inc.
+	public function startInput($status = 'public', $doi = null)
 	{
 		if (!$this->checkRequired())
 		{
@@ -696,11 +722,17 @@ class Doi extends Obj
 		}
 
 		$input  = "_target: " . $this->get('url') ."\n";
-		$input .= "datacite.creator: " . $this->get('creator') . "\n";
-		$input .= "datacite.title: ". $this->get('title') . "\n";
-		$input .= "datacite.publisher: " . $this->get('publisher') . "\n";
-		$input .= "datacite.publicationyear: " . $this->get('pubYear') . "\n";
-		$input .= "datacite.resourcetype: " . $this->get('resourceType') . "\n";
+		// Modified by CANARIE Inc. Beginning
+		// Only send out these fields for a new DOI register
+		if (!$doi)
+		{
+			$input .= "datacite.creator: " . $this->get('creator') . "\n";
+			$input .= "datacite.title: ". $this->get('title') . "\n";
+			$input .= "datacite.publisher: " . $this->get('publisher') . "\n";
+			$input .= "datacite.publicationyear: " . $this->get('pubYear') . "\n";
+			$input .= "datacite.resourcetype: " . $this->get('resourceType') . "\n";
+		}
+		// Modified by CANARIE Inc. End
 		$input .= "_profile: datacite". "\n";
 
 		$status = strtolower($status);
@@ -737,7 +769,12 @@ class Doi extends Obj
 
 		if ($success === 201 || $success === 200)
 		{
-			$out = explode('/', $response);
+			// Modified by CANARIE Inc. Beginning
+			// Changed how to process the response
+			$resArray = explode('_', $response);
+ 			$doiStr = reset($resArray);
+ 			$out = explode('/', $doiStr);
+ 			// Modified by CANARIE Inc. End
 			$handle = trim(end($out));
 			if ($handle)
 			{
@@ -768,7 +805,10 @@ class Doi extends Obj
 			return false;
 		}
 
-		$input = $this->startInput($status);
+		// Modified by CANARIE Inc. Beginning
+		// Get doi for update
+		$input = $this->startInput($status, $doi);
+		// Modified by CANARIE Inc. End
 		if (!$input)
 		{
 			// Cannot process if any required fields are missing

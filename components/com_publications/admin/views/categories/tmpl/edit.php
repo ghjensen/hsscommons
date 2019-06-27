@@ -4,6 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 
 // No direct access
 defined('_HZEXEC_') or die();
@@ -21,11 +26,14 @@ if ($canDo->get('core.edit'))
 }
 Toolbar::cancel();
 
+// Modified by CANARIE Inc. Beginning
+// Changed the type list
 $dcTypes = array(
 	'Collection' , 'Dataset' , 'Event' , 'Image' ,
-	'InteractivePublication' , 'MovingImage' , 'PhysicalObject' ,
-	'Service' , 'Software' , 'Sound' , 'StillImage' , 'Text'
+	'InteractiveResource' , 'Audiovisual' , 'PhysicalObject' ,
+	'Service' , 'Software' , 'Sound' , 'Text'
 );
+// Modified by CANARIE Inc. End
 
 $params = $this->row->params;
 

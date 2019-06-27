@@ -4,7 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ * /
 namespace Components\Publications\Admin\Controllers;
 
 use Hubzero\Component\AdminController;
@@ -343,7 +347,10 @@ class Licenses extends AdminController
 
 		if ($success)
 		{
-			Notify::success(Lang::txt('COM_PUBLICATIONS_ITEMS_REMOVED', $i));
+			// Modified by CANARIE Inc. Beginning
+			// removed the nonexistent "$i" variable
+			Notify::success(Lang::txt('COM_PUBLICATIONS_ITEMS_REMOVED'));
+			// Modified by CANARIE Inc. End
 		}
 
 		// Redirect

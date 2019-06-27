@@ -4,7 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
-
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 // No direct access
 defined('_HZEXEC_') or die();
 
@@ -186,7 +190,10 @@ $schema = $metaElements->getSchema();
 		{
 			$cite->version = $this->publication->version_label;
 		}
-
+		// Modified by CANARIE Inc. Beginning
+		// Added citations
+		$citations=$this->publication->metadata;
+		// Modified by CANARIE Inc. End
 		if ($this->publication->params->get('show_citation') == 2)
 		{
 			$citations = '';

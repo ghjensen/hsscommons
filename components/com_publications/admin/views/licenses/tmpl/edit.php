@@ -4,6 +4,11 @@
  * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
  * @license    http://opensource.org/licenses/MIT MIT
  */
+/**
+ * Modified by CANARIE Inc. for the HSSCommons project.
+ *
+ * Summary of changes: Minor customization.
+ */
 
 // No direct access
 defined('_HZEXEC_') or die();
@@ -58,7 +63,9 @@ $text = preg_replace("/\r\n/", "\r", trim($this->row->text));
 					<span class="hint"><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ICON_HINT'); ?></span>
 				</div>
 
-				<input type="hidden" name="fields[ordering]" value="<?php echo $this->row->ordering; ?>" />
+				<!-- Modified by CANARIE Inc. Beginning -->
+				<!-- Removed the input for ordering -->
+				<!-- Modified by CANARIE Inc. End -->
 				<input type="hidden" name="fields[id]" value="<?php echo $this->row->id; ?>" />
 				<input type="hidden" name="option" value="<?php echo $this->option; ?>" />
 				<input type="hidden" name="controller" value="<?php echo $this->controller; ?>" />
@@ -72,11 +79,14 @@ $text = preg_replace("/\r\n/", "\r", trim($this->row->text));
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ID'); ?></th>
 						<td><?php echo $this->row->id; ?></td>
 					</tr>
+					<!-- Modified by CANARIE Inc. Beginning -->
+					<!-- Moved the COM_PUBLICATIONS_FIELD_DEFAULT inside the condition -->
+				<?php if ($this->row->id) { ?>
 					<tr>
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_DEFAULT'); ?></th>
 						<td><?php echo $this->row->isMain() ? Lang::txt('COM_PUBLICATIONS_LICENSE_YES') : Lang::txt('COM_PUBLICATIONS_LICENSE_NO'); ?></td>
 					</tr>
-				<?php if ($this->row->id) { ?>
+					<!-- Modified by CANARIE Inc. End -->
 					<tr>
 						<th><?php echo Lang::txt('COM_PUBLICATIONS_FIELD_ORDERING'); ?></th>
 						<td><?php echo $this->row->ordering; ?></td>
