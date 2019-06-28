@@ -73,7 +73,7 @@ class Helper extends Module
 			'limit'      => 1,
 			'start'      => 0,
 			'sortby'     => 'random',
-			'access'     => 'public'
+			'filterby'   => 'public'
 		);
 
 		$row = null;
