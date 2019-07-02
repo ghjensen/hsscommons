@@ -805,10 +805,7 @@ class Doi extends Obj
 			return false;
 		}
 
-		// Modified by CANARIE Inc. Beginning
-		// Get doi for update
-		$input = $this->startInput($status, $doi);
-		// Modified by CANARIE Inc. End
+		$input = $this->startInput($status);
 		if (!$input)
 		{
 			// Cannot process if any required fields are missing

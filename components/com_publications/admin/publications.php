@@ -48,7 +48,10 @@ if (!file_exists(__DIR__ . DS . 'controllers' . DS . $controllerName . '.php'))
 	\Route::url('index.php?option=com_publications&controller=batchcreate'),
 	$controllerName == 'batchcreate'
 );
-require_once dirname(dirname(__DIR__)) . DS . 'com_plugins' . DS . 'helpers' . DS . 'plugins.php';
+// Modified by CANARIE Inc. Beginning
+// Use the core path instead of app
+require_once \Component::path('com_plugins') . DS . 'helpers' . DS . 'plugins.php';
+// Modified by CANARIE Inc. End
 if (\Components\Plugins\Helpers\Plugins::getActions()->get('core.manage'))
 {
 	\Submenu::addEntry(
