@@ -8,7 +8,7 @@
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
  * Summary of changes: Minor customization.
- * /
+ */
 namespace Components\Publications\Admin\Controllers;
 
 use Hubzero\Component\AdminController;
