@@ -27,7 +27,7 @@ $ignore = array(
 	'mail', 'api', 'permissions', 'filters', 'rate_limit', 'asset_id'
 );
 
-$this->others = array();
+$others = array();
 foreach ($this->data as $section => $values):
 	if (in_array($section, $ignore)):
 		continue;
@@ -107,19 +107,6 @@ $this->js();
 				<?php echo $this->loadTemplate('filters'); ?>
 			</div>
 		</div>
-		<?php
-		foreach ($this->others as $section => $values):
-			$this->section = $section;
-			$this->values  = $values;
-			?>
-			<div id="page-<?php echo $section; ?>" class="tab">
-				<div class="noshow">
-					<?php echo $this->loadTemplate('other'); ?>
-				</div>
-			</div>
-			<?php
-		endforeach;
-		?>
 		<input type="hidden" name="task" value="" />
 		<?php echo Html::input('token'); ?>
 	</div>

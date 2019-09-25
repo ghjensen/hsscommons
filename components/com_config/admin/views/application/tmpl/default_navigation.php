@@ -18,9 +18,6 @@ defined('_HZEXEC_') or die();
 				<li><a href="#page-api" id="api"><?php echo Lang::txt('COM_CONFIG_API'); ?></a></li>
 				<li><a href="#page-permissions" id="permissions"><?php echo Lang::txt('COM_CONFIG_PERMISSIONS'); ?></a></li>
 				<li><a href="#page-filters" id="filters"><?php echo Lang::txt('COM_CONFIG_TEXT_FILTERS')?></a></li>
-				<?php foreach ($this->others as $key => $data): ?>
-					<li><a href="#page-<?php echo $key; ?>" id="<?php echo $key; ?>"><?php echo $key; ?></a></li>
-				<?php endforeach; ?>
 			</ul>
 			<div class="clr"></div>
 		</div>
