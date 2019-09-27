@@ -422,7 +422,7 @@ class plgAuthenticationShibboleth extends \Hubzero\Plugin\Plugin
 			$dbh = App::get('db');
 			//  Modified by CANARIE Inc. Beginning
 			//  Add UTC TIMESTAMP
-			$dbh->setQuery('INSERT INTO `#__shibboleth_sessions` (session_key, data) VALUES('.$dbh->quote($key).', '.$dbh->quote(json_encode($attrs)).', UTC_TIMESTAMP)');
+			$dbh->setQuery('INSERT INTO #__shibboleth_sessions(session_key, data, created) VALUES('.$dbh->quote($key).', '.$dbh->quote(json_encode($attrs)).', UTC_TIMESTAMP)');
 			//  Modified by CANARIE Inc. End
 			$dbh->execute();
 		}
