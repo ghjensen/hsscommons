@@ -62,7 +62,7 @@ class Helper extends Module
 	 */
 	public function run()
 	{
-		include_once(Component::path('com_publications') . DS . 'tables' . DS . 'publication.php');
+		include_once Component::path('com_publications') . DS . 'tables' . DS . 'publication.php';
 
 		$database = \App::get('db');
 
@@ -72,7 +72,8 @@ class Helper extends Module
 			'start'      => 0,
 			'sortby'     => 'popularity',
 			'tag'        => trim($this->params->get('tag')),
-			'access'     => 'public'
+			//Limit to the PUBLISHED status
+			'status'     => 1
 		);
 
 		$row = null;

@@ -1,32 +1,8 @@
 <?php
 /**
- * HUBzero CMS
- *
- * Copyright 2005-2015 HUBzero Foundation, LLC.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * HUBzero is a registered trademark of Purdue University.
- *
- * @package   hubzero-cms
- * @copyright Copyright 2005-2015 HUBzero Foundation, LLC.
- * @license   http://opensource.org/licenses/MIT MIT
+ * @package    hubzero-cms
+ * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
+ * @license    http://opensource.org/licenses/MIT MIT
  */
 
 namespace Components\Members\Admin\Controllers;
@@ -77,6 +53,7 @@ class Members extends AdminController
 		$this->registerTask('unconfirm', 'state');
 		$this->registerTask('applyprofile', 'saveprofile');
 		$this->registerTask('unblock', 'block');
+		$this->registerTask('disapprove', 'approve');
 
 		parent::execute();
 	}
@@ -480,11 +457,18 @@ class Members extends AdminController
 		$user->set('name', $name);
 		$user->set('modifiedDate', Date::toSql());
 
+		// Get their current activation code
+		$ac = $user->get('activation');
+
+		// If the incoming code is > zero, then the account being activated
+		// (unactivated accoutns have a negative-value code, e.g.: -123456)
 		if ($ec = Request::getInt('activation', 0, 'post'))
 		{
 			$user->set('activation', $ec);
 		}
-		else
+		// If the account was previously activated and we're de-activating
+		// reset the activation code.
+		elseif ($ac > 0)
 		{
 			$user->set('activation', Helpers\Utility::genemailconfirm());
 		}
@@ -670,8 +654,17 @@ class Members extends AdminController
 		$this->cancelTask();
 	}
 
+	/**
+	 * Re-send a confirmation email to a user
+	 *
+	 * @return  void
+	 */
 	public function resendConfirmTask()
 	{
+		// Check for request forgeries
+		Request::checkToken('get');
+
+		// Check for permission to perform this aciton
 		if (!User::authorise('core.manage', $this->_option)
 		 && !User::authorise('core.admin', $this->_option)
 		 && !User::authorise('core.create', $this->_option)
@@ -679,16 +672,19 @@ class Members extends AdminController
 		{
 			return $this->cancelTask();
 		}
-		Request::checkToken('get');
+
 		$id = Request::getInt('id');
 		$user = Member::oneOrFail($id);
+
 		$xregistration = new \Components\Members\Models\Registration();
 		$xregistration->loadProfile($user);
+
 		// Send confirmation email
 		if ($user->get('activation') < 0)
 		{
 			$sendEmail = \Components\Members\Helpers\Utility::sendConfirmEmail($user, $xregistration);
 		}
+
 		if ($sendEmail)
 		{
 			Notify::success(Lang::txt('COM_MEMBERS_RESEND_CONFIRM_SUCCESS'));
@@ -697,8 +693,10 @@ class Members extends AdminController
 		{
 			Notify::error(Lang::txt('COM_MEMBERS_RESEND_CONFIRM_ERROR'));
 		}
+
 		return $this->editTask($user);
 	}
+
 	/**
 	 * Removes a profile entry, associated picture, and redirects to main listing
 	 *
@@ -849,7 +847,7 @@ class Members extends AdminController
 			App::abort(403, Lang::txt('JERROR_ALERTNOAUTHOR'));
 		}
 
-		$state = ($this->getTask() == 'approve' ? 2 : 0);
+		$state = ($this->getTask() == 'approve' ? 1 : 0);
 
 		// Incoming user ID
 		$ids = Request::getArray('id', array());
@@ -869,8 +867,10 @@ class Members extends AdminController
 			// Load the profile
 			$user = Member::oneOrFail(intval($id));
 
+			$prev = $user->get('approved');
+
 			// Extra, paranoid check that we only approve accounts that need it
-			if (!$user->get('approved'))
+			if ($prev != $state)
 			{
 				$user->set('approved', $state);
 
@@ -881,7 +881,7 @@ class Members extends AdminController
 				}
 
 				// Email the user that their account has been approved
-				if ($this->config->get('useractivation_email'))
+				if ($state && $this->config->get('useractivation_email'))
 				{
 					if (!$this->emailApprovedUser($user))
 					{

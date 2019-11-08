@@ -64,7 +64,7 @@ class Helper extends Module
 	 */
 	public function run()
 	{
-		include_once(Component::path('com_projects') . DS . 'tables' . DS . 'project.php');
+		include_once Component::path('com_projects') . DS . 'tables' . DS . 'project.php';
 
 		$database = \App::get('db');
 
@@ -73,7 +73,7 @@ class Helper extends Module
 			'limit'      => 1,
 			'start'      => 0,
 			'sortby'     => 'random',
-			'access'     => 'public'
+			'filterby'   => 'public'
 		);
 
 		$row = null;

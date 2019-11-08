@@ -1,40 +1,14 @@
 <?php
 /**
- * HUBzero CMS
- *
- * Copyright 2005-2015 HUBzero Foundation, LLC.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * HUBzero is a registered trademark of Purdue University.
- *
- * @package   hubzero-cms
- * @copyright Copyright 2005-2015 HUBzero Foundation, LLC.
- * @license   http://opensource.org/licenses/MIT MIT
+ * @package    hubzero-cms
+ * @copyright  Copyright 2005-2019 HUBzero Foundation, LLC.
+ * @license    http://opensource.org/licenses/MIT MIT
  */
-
 /**
  * Modified by CANARIE Inc. for the HSSCommons project.
  *
  * Summary of changes: Removed affiliated/nonaffiliated option.
  */
-
 // No direct access
 defined('_HZEXEC_') or die();
 
@@ -47,13 +21,13 @@ $numitems = 0;
 if ($this->citations)
 {
 	// Get a needed library
-	include_once(PATH_CORE . DS . 'components' . DS . 'com_citations' . DS . 'helpers' . DS . 'format.php');
+	include_once Component::path('com_citations') . DS . 'helpers' . DS . 'format.php';
 
 	// Set some vars
 	// Modified by CANARIE Inc. Beginning
 	// replaced two variables with one
-    $item = '';
-    // Modified by CANARIE Inc. End
+	$item = '';
+	// Modified by CANARIE Inc. End
 
 	$formatter = new \Components\Citations\Helpers\Format;
 	$formatter->setTemplate($this->format);
@@ -89,7 +63,7 @@ if ($this->citations)
 		}
 		$item .= "\t\t" . '</p>' . "\n";
 		$item .= "\t" . '</li>' . "\n";
-		
+
 		// Modified by CANARIE Inc. Beginning
 		// replaced the code for adding numbers
 		$numitems++;
@@ -98,19 +72,19 @@ if ($this->citations)
 }
 ?>
 <h3 id="citations">
-        <?php echo Lang::txt('PLG_PUBLICATION_CITATIONS'); ?>
-        <!--  Modified by CANARIE Inc. Beginning -->
-        <!--  Replaced how the cited number be displayed -->
-        (<?php echo $numitems; ?>)
-        <!--  Modified by CANARIE Inc. End -->
+	<?php echo Lang::txt('PLG_PUBLICATION_CITATIONS'); ?>
+	 <!--  Modified by CANARIE Inc. Beginning -->
+     <!--  Replaced how the cited number be displayed -->
+     (<?php echo $numitems; ?>)
+     <!--  Modified by CANARIE Inc. End -->
 </h3>
 <?php if ($this->citations) { ?>
-		<!--  Modified by CANARIE Inc. Beginning -->
-        <!--  Replaced how the citations results be displayed -->
-        <ul class="citations results">
-                <?php echo $item; ?>
-        </ul>
-        <!--  Modified by CANARIE Inc. End -->
+	<!--  Modified by CANARIE Inc. Beginning -->
+    <!--  Replaced how the citations results be displayed -->
+    <ul class="citations results">
+        <?php echo $item; ?>
+    </ul>
+    <!--  Modified by CANARIE Inc. End -->
 <?php } else { ?>
-        <p><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_NO_CITATIONS_FOUND'); ?></p>
-<?php } ?>
+	<p><?php echo Lang::txt('PLG_PUBLICATION_CITATIONS_NO_CITATIONS_FOUND'); ?></p>
+<?php }
