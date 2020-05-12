@@ -480,6 +480,7 @@ class Doi extends Obj
 		// Make service call to provision doi
 		$doi = $this->runCurl($url, $input);
 
+		$sendXml = 0; //overiding this value - we don't need to submit XML using EZ API 
 		// Are we sending extended data?
 		if ($sendXml == true && $doi)
 		{
