@@ -1,4 +1,8 @@
 @import url("../../../../../core/plugins/hubzero/autocompleter/assets/css/autocompleter.css");
+	[class^="token-input-dropdown"] {
+		box-sizing: content-box;
+	}
+
 	/*.entry-search ul.textboxlist-holder,
 	.entry-search ul.token-input-list-act {
 		background: transparent;
