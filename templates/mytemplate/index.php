@@ -149,10 +149,6 @@ $this->setTitle(Config::get('sitename') . ' - ' . $this->getTitle());
                 <?php } ?>
                 </ul>
               </nav>
-
-              <nav id="nav" class="main-navigation" aria-label="<?php echo Lang::txt('TPL_MYTEMPLATE_MAINMENU'); ?>">
-                <jdoc:include type="modules" name="user3" />
-              </nav>
             </header>
 
             <div id="sub-masthead">
