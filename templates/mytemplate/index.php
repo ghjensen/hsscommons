@@ -155,7 +155,7 @@ $this->setTitle(Config::get('sitename') . ' - ' . $this->getTitle());
             </header>
 
             <div id="sub-masthead">
-              <?php if ($this->countModules('helppane')) : ?>
+              <?php if ( false && $this->countModules('helppane')) : ?>
                 <p id="tab">
                   <a href="<?php echo Route::url('index.php?option=com_support'); ?>" title="<?php echo Lang::txt('TPL_MYTEMPLATE_NEED_HELP'); ?>">
                     <span><?php echo Lang::txt('TPL_MYTEMPLATE_HELP'); ?></span>

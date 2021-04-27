@@ -94,6 +94,14 @@
 		border: 1px solid #ddd;
 	}*/
 
+	ul.token-input-list-act{
+		line-height: 30px;
+	}
+
+	li.token-input-input-token-act {
+		line-height: 35px;
+	}
+
 /* Field - focus */
 	ul.token-input-list-act:hover,
 	ul.token-input-list-acg:hover,
@@ -234,3 +242,9 @@
 	li.token-input-selected-token-act p:before {
 		border-color: transparent #0fa1ca transparent transparent !important;
 	}*/
+
+	input#token-input-actags {
+		font-size: 120%;
+		border: none;
+		height: 100%;
+	}
