@@ -23,7 +23,7 @@ $this->css()
 	</div><!-- / #content-header-extra -->
 </header>
 
-<section class="main section" style="background-color:red;">
+<section class="main section">
 	<form class="section-inner hz-layout-with-aside" action="<?php echo Route::url('index.php?option=' . $this->option . '&task=browse'); ?>" method="get">
 		<div class="subject">
 

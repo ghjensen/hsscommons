@@ -1,7 +1,7 @@
 cache/
 migrations/
-logs/
-site/
-tmp/
-config/
+/logs/
+/site/
+/tmp/
+/config/
 loglog.txt
